@@ -60,10 +60,21 @@
     <Compile Include="PlaylistServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SongServices.cs" />
+    <Compile Include="UserServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OurTunes.Data\OurTunes.Data.csproj">
+      <Project>{98ECC7F9-C746-42A6-9F40-54DE5AA136F2}</Project>
+      <Name>OurTunes.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OurTunes.Model\OurTunes.Model.csproj">
+      <Project>{8E608B52-B2D1-4217-BB28-E67490DDD460}</Project>
+      <Name>OurTunes.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

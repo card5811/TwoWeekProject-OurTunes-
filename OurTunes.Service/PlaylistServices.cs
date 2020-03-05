@@ -28,27 +28,27 @@ namespace OurTunes.Service
             }
         }
 
-      /*  public IEnumerable<NoteListItem> GetNotes()
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var query =
-                    ctx
-                        .Notes
-                        .Where(e => e.OwnerId == _userId)
-                        .Select(
-                            e =>
-                                new NoteListItem
-                                {
-                                    NoteId = e.NoteId,
-                                    Title = e.Title,
-                                    CreatedUtc = e.CreatedUtc
-                                }
-                        );
+        /*  public IEnumerable<NoteListItem> GetNotes()
+          {
+              using (var ctx = new ApplicationDbContext())
+              {
+                  var query =
+                      ctx
+                          .Notes
+                          .Where(e => e.OwnerId == _userId)
+                          .Select(
+                              e =>
+                                  new NoteListItem
+                                  {
+                                      NoteId = e.NoteId,
+                                      Title = e.Title,
+                                      CreatedUtc = e.CreatedUtc
+                                  }
+                          );
 
-                return query.ToArray();
-            }
-        } */
+                  return query.ToArray();
+              }
+          } */
 
         public PlaylistEdit GetPlaylistByName(string name)
         {
@@ -57,7 +57,7 @@ namespace OurTunes.Service
                 var entity =
                     ctx
                         .Playlists
-                        .Single(e => e.PlaylistName == name)
+                        .Single(e => e.PlaylistName == name);
                 return
                     new PlaylistEdit
                     {
@@ -89,10 +89,9 @@ namespace OurTunes.Service
             {
                 var entity =
                     ctx
-                    PlaylistId = model.PlaylistId,
-                    PlaylistName = model.PlaylistName,
-                    UserId = model.UserId,
-                    TotalTimeOfPlaylist = model.TotalTimeOfPlaylist
+                    .Playlists
+                    .Single(e => e.PlaylistId == playlistId);
+
                 ctx.Playlists.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
@@ -100,5 +99,4 @@ namespace OurTunes.Service
         }
     }
 }
-}
-}
+

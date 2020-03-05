@@ -21,7 +21,7 @@ namespace OurTunes.Data
         public int UserId { get; set; }
         public virtual User User { get; set; }
 
-        public string TotalTimeOfPlaylist { get; }
+        public string TotalTimeOfPlaylist { get; set; }
         //come back and work with song length 
     }
 }
