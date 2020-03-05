@@ -59,7 +59,7 @@ namespace OurTunes.Data
                 HasKey(iul => iul.UserId);
             }
         }
-        public class IdentityUserRoleConfiguration : EntityTypeConfiguration<IdentityUserLogin>
+        public class IdentityUserRoleConfiguration : EntityTypeConfiguration<IdentityUserRole>
         {
             public IdentityUserRoleConfiguration()
             {

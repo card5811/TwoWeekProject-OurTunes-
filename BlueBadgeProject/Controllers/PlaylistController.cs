@@ -1,4 +1,5 @@
-﻿using OurTunes.Service;
+﻿using OurTunes.Data;
+using OurTunes.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace BlueBadgeProject.Controllers
 {
     public class PlaylistController
     {
+
     }
 }
 
