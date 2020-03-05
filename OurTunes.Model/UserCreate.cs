@@ -23,5 +23,9 @@ namespace OurTunes.Model
 
         public string Email { get; set; }
 
+        public bool UserDelete(string userName)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
