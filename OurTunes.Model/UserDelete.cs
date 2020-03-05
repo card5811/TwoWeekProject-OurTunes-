@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace OurTunes.Model
 {
-    class UserDelete
+    public class UserDelete
     {
+        public Guid UserId { get; set; }
+
+        public string UserName { get; set; }
+
+        public string FName { get; set; }
+
+        public string LName { get; set; }
+
+        public string Email { get; set; }
     }
 }

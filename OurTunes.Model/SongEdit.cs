@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace OurTunes.Model
 {
-    class SongEdit
+    public class SongEdit
     {
+        public int SongId { get; set; }
+
+        public string SongName { get; set; }
+
+        public string AlbumName { get; set; }
+
+        public string SongLength { get; set; }
+
     }
 }
