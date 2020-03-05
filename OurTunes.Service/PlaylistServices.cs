@@ -28,21 +28,23 @@ namespace OurTunes.Service
             }
         }
 
-        /*  public IEnumerable<NoteListItem> GetNotes()
+       /*  public IEnumerable<SongEdit> GetSongs()
           {
               using (var ctx = new ApplicationDbContext())
               {
                   var query =
                       ctx
-                          .Notes
-                          .Where(e => e.OwnerId == _userId)
+                          .Songs
+                          .Where(e => e.SongId == e.SongId)
                           .Select(
                               e =>
-                                  new NoteListItem
+                                  new SongEdit
                                   {
-                                      NoteId = e.NoteId,
-                                      Title = e.Title,
-                                      CreatedUtc = e.CreatedUtc
+                                      SongId = e.SongId,
+                                      ArtistName = e.ArtistName,
+                                      AlbumName = e.AlbumName,
+                                      SongLength = e.SongLength,
+                                      SongName = e.SongName
                                   }
                           );
 
