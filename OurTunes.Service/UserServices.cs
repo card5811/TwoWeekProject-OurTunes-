@@ -56,6 +56,11 @@ namespace OurTunes.Service
             }
         }
 
+        public bool UserDelete(string userName)
+        {
+            throw new NotImplementedException();
+        }
+
         /*  public bool UpdateNote(NoteEdit model)
           {
               using (var ctx = new ApplicationDbContext())
