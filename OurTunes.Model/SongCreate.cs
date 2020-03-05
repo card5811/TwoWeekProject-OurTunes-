@@ -21,5 +21,7 @@ namespace OurTunes.Model
 
         [MinLength(1, ErrorMessage = "Please enter the song length in the format of: 'X:XX'.")]
         public string SongLength { get; set; }
+
+        public string ArtistName { get; set; }
     }
 }

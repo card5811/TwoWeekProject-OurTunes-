@@ -14,6 +14,9 @@ namespace OurTunes.Data
         public int SongId { get; set; }
 
         [Required]
+        public string ArtistName { get; set; }
+
+        [Required]
         public string SongName { get; set; }
 
         [Required]
