@@ -28,29 +28,28 @@ namespace OurTunes.Service
             }
         }
 
-       /*  public IEnumerable<SongEdit> GetSongs()
+     public IEnumerable<PlaylistEdit> GetPlaylists()
           {
               using (var ctx = new ApplicationDbContext())
               {
                   var query =
                       ctx
-                          .Songs
-                          .Where(e => e.SongId == e.SongId)
+                          .Playlists
+                          .Where(e => e.PlaylistId == e.PlaylistId)
                           .Select(
                               e =>
-                                  new SongEdit
+                                  new PlaylistEdit
                                   {
-                                      SongId = e.SongId,
-                                      ArtistName = e.ArtistName,
-                                      AlbumName = e.AlbumName,
-                                      SongLength = e.SongLength,
-                                      SongName = e.SongName
+                                      PlaylistId = e.PlaylistId,
+                                      UserId = e.UserId,
+                                      PlaylistName = e.PlaylistName,
+                                      TotalTimeOfPlaylist = e.TotalTimeOfPlaylist
                                   }
                           );
 
                   return query.ToArray();
               }
-          } */
+          }
 
         public PlaylistEdit GetPlaylistByName(string name)
         {
