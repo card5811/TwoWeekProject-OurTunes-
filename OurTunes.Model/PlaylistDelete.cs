@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace OurTunes.Model
 {
-    class PlaylistDelete
+    public class PlaylistDelete
     {
+        public int PlaylistId { get; set; }
+
+        public string PlaylistName { get; set; }
+
+        public int UserId { get; set; }
+
+        public string TotalTimeOfPlaylist { get; }
     }
 }

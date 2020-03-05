@@ -8,5 +8,13 @@ namespace OurTunes.Model
 {
     class SongDelete
     {
+        public int SongId { get; set; }
+
+        public string SongName { get; set; }
+
+        public string AlbumName { get; set; }
+
+        public string SongLength { get; set; }
+
     }
 }
