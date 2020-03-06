@@ -33,7 +33,7 @@ namespace OurTunes.Data
             return new ApplicationDbContext();
         }
 
-        public DbSet<User> User { get; set; }
+        public DbSet<User> Profiles { get; set; }
         public DbSet<Song> Songs { get; set; }
         public DbSet<Playlist> Playlists { get; set; }
         public DbSet<JointPlaylist> JointPlaylists { get; set; }
@@ -59,7 +59,7 @@ namespace OurTunes.Data
                 HasKey(iul => iul.UserId);
             }
         }
-        public class IdentityUserRoleConfiguration : EntityTypeConfiguration<IdentityUserLogin>
+        public class IdentityUserRoleConfiguration : EntityTypeConfiguration<IdentityUserRole>
         {
             public IdentityUserRoleConfiguration()
             {

@@ -1,5 +1,4 @@
-
-﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity;
 using OurTunes.Data;
 using OurTunes.Model;
 using OurTunes.Service;
@@ -58,4 +57,3 @@ namespace BlueBadgeProject.Controllers
         }
     }
 }
-
