@@ -10,6 +10,8 @@ namespace OurTunes.Data
     public class User
     {
         [Key]
+        public int OwnerId { get; set; }
+
         public Guid UserId { get; set; }
 
         [Required]

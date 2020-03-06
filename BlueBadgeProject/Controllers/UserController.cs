@@ -55,7 +55,7 @@ namespace BlueBadgeProject.Controllers
         {
             var service = CreateUserService();
 
-            if (!service.UserDelete(userName))
+            if (!service.DeleteUser(userName))
                 return InternalServerError();
 
             return Ok();

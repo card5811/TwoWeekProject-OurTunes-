@@ -30,7 +30,7 @@ namespace OurTunes.Service
 
             using (var ctx = new ApplicationDbContext())
             {
-                ctx.User.Add(entity);
+                ctx.Owners.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
         }
@@ -41,7 +41,7 @@ namespace OurTunes.Service
             {
                 var entity =
                     ctx
-                        .User
+                        .Owners
                         .Single(e => e.UserName == userName && e.UserId == _userId);
                 return
                     new UserCreate
@@ -56,12 +56,8 @@ namespace OurTunes.Service
             }
         }
 
-        public bool UserDelete(string userName)
-        {
-            throw new NotImplementedException();
-        }
 
-        /*  public bool UpdateNote(NoteEdit model)
+        /*  public bool UpdateUser(userUpdate model)
           {
               using (var ctx = new ApplicationDbContext())
               {
@@ -84,10 +80,10 @@ namespace OurTunes.Service
             {
                 var entity =
                     ctx
-                    .User
+                    .Owners
                     .Single(e => e.UserName == userName && e.UserId == _userId);
 
-                ctx.User.Remove(entity);
+                ctx.Owners.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
             }

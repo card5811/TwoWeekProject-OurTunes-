@@ -33,7 +33,7 @@ namespace OurTunes.Data
             return new ApplicationDbContext();
         }
 
-        public DbSet<User> User { get; set; }
+        public DbSet<User> Owners { get; set; }
         public DbSet<Song> Songs { get; set; }
         public DbSet<Playlist> Playlists { get; set; }
         public DbSet<JointPlaylist> JointPlaylists { get; set; }
