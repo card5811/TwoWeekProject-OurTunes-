@@ -30,7 +30,7 @@ namespace OurTunes.Service
 
             using (var ctx = new ApplicationDbContext())
             {
-                ctx.Owners.Add(entity);
+                ctx.Profiles.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
         }
@@ -41,7 +41,7 @@ namespace OurTunes.Service
             {
                 var entity =
                     ctx
-                        .Owners
+                        .Profiles
                         .Single(e => e.UserName == userName && e.UserId == _userId);
                 return
                     new UserCreate
@@ -80,10 +80,10 @@ namespace OurTunes.Service
             {
                 var entity =
                     ctx
-                    .Owners
+                    .Profiles
                     .Single(e => e.UserName == userName && e.UserId == _userId);
 
-                ctx.Owners.Remove(entity);
+                ctx.Profiles.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
             }
