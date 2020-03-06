@@ -9,7 +9,7 @@ namespace OurTunes.Model
 {
    public class UserCreate
     {
-        public Guid UserId { get; set; }
+      //  public Guid UserId { get; set; }
         
         public string UserName { get; set; }
 
@@ -22,10 +22,5 @@ namespace OurTunes.Model
         public string LName { get; set; }
 
         public string Email { get; set; }
-
-        public bool UserDelete(string userName)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

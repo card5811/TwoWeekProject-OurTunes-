@@ -10,22 +10,16 @@ namespace OurTunes.Service
 {
     public class UserServices
     {
-        private readonly Guid _userId;
-
-        public UserServices(Guid userId)
-        {
-            _userId = userId;
-        }
-
         public bool CreateUser(UserCreate model)
         {
             var entity =
                 new User()
                 {
-                    UserId = _userId,
                     FName = model.FName,
                     LName = model.LName,
-                    UserName = model.UserName
+                    UserName = model.UserName,
+                    Email = model.Email
+
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -42,11 +36,11 @@ namespace OurTunes.Service
                 var entity =
                     ctx
                         .Profiles
-                        .Single(e => e.UserName == userName && e.UserId == _userId);
+                        .Single(e => e.UserName == userName);
                 return
                     new UserCreate
                     {
-                        UserId = entity.UserId,
+                       
                         UserName = entity.UserName,
                         Email = entity.Email,
                         FName = entity.FName,
@@ -56,23 +50,24 @@ namespace OurTunes.Service
             }
         }
 
+        public bool UpdateUser(UserEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Profiles
+                    .Single(e => e.OwnerId == model.OwnerId);
 
-        /*  public bool UpdateUser(userUpdate model)
-          {
-              using (var ctx = new ApplicationDbContext())
-              {
-                  var entity =
-                      ctx
-                      .Notes
-                      .Single(e => e.NoteId == model.NoteId && e.OwnerId == _userId);
 
-                  entity.Title = model.Title;
-                  entity.Content = model.Content;
-                  entity.ModifiedUtc = DateTimeOffset.Now;
+                entity.UserName = model.UserName;
+                entity.FName = model.FName;
+                entity.LName = model.LName;
+                entity.Email = model.Email;
 
-                  return ctx.SaveChanges() == 1;
-              }
-          } */
+                return ctx.SaveChanges() == 1;
+            }
+        }
 
         public bool DeleteUser(string userName)
         {
@@ -81,7 +76,7 @@ namespace OurTunes.Service
                 var entity =
                     ctx
                     .Profiles
-                    .Single(e => e.UserName == userName && e.UserId == _userId);
+                    .Single(e => e.UserName == userName);
 
                 ctx.Profiles.Remove(entity);
 
