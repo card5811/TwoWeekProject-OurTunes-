@@ -66,6 +66,7 @@
     <Compile Include="SongEdit.cs" />
     <Compile Include="UserCreate.cs" />
     <Compile Include="UserDelete.cs" />
+    <Compile Include="UserEdit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

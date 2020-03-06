@@ -17,47 +17,33 @@ namespace BlueBadgeProject.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var service = CreateUserService();
-
-            if (!service.CreateUser(user))
-                return InternalServerError();
-
+            UserServices ourUser = new UserServices();
+            ourUser.CreateUser(user);
             return Ok();
         }
-        private UserServices CreateUserService()
-        {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var userService = new UserServices(userId);
-            return userService;
-        }
+       
 
-      /*  public IHttpActionResult Get(Guid id)
+       public IHttpActionResult Get(string userName)
         {
-            UserServices userService = CreateUserService();
-            var user = userService.GetUserById(id);
+            UserServices userService = new UserServices();
+            var user = userService.GetUserByUserName(userName);
             return Ok(user);
-        } */
+        } 
 
-      /*  public IHttpActionResult Put(NoteEdit note)
+       public IHttpActionResult Put(UserEdit userName)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var service = CreateNoteService();
-
-            if (!service.UpdateNote(note))
-                return InternalServerError();
-
+            UserServices userService = new UserServices();
+            var user = userService.UpdateUser(userName);
             return Ok();
-        } */
+        } 
 
         public IHttpActionResult Delete(string userName)
         {
-            var service = CreateUserService();
-
-            if (!service.DeleteUser(userName))
-                return InternalServerError();
-
+            UserServices ourUser = new UserServices();
+            ourUser.DeleteUser(userName);
             return Ok();
         }
     }
