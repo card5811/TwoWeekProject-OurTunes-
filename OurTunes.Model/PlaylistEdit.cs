@@ -11,7 +11,7 @@ namespace OurTunes.Model
     {
         public int PlaylistId { get; set; }
 
-        public int UserId { get; set; }
+        public int OwnerId { get; set; }
 
         [MinLength(1, ErrorMessage = "Gotta name it something.")]
         [MaxLength(30, ErrorMessage = "Make it something shorter please.")]
