@@ -99,5 +99,22 @@ namespace OurTunes.Service
             }
         }
     }
+
+    public class PlaylistSongServices
+    {
+        public bool PostSong(JointModel joint)
+        {
+            JointPlaylist addSong = new JointPlaylist();
+            addSong.PlaylistId = joint.PlaylistId;
+            addSong.SongId = joint.SongId;
+
+            using (var context = new ApplicationDbContext())
+            {
+                context.JointPlaylists.Add(addSong);
+                return context.SaveChanges()==1;
+            };
+            
+        }
+    }
 }
 
