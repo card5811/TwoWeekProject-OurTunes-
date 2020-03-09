@@ -1,5 +1,4 @@
-
-﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity;
 using OurTunes.Data;
 using OurTunes.Model;
 using OurTunes.Service;
@@ -12,6 +11,7 @@ using System.Web.Http;
 namespace BlueBadgeProject.Controllers
 {
     [Authorize]
+    [RoutePrefix("api/Playlist")]
     public class PlaylistController : ApiController
     {
         //GET ALL
@@ -56,6 +56,30 @@ namespace BlueBadgeProject.Controllers
 
             return Ok();
         }
+        private PlaylistSongServices SongPlaylistService()
+        {
+            var playlistServices = new PlaylistSongServices();
+            return playlistServices;
+        }
+        [HttpPost]
+        [Route("PostSong")]
+        public IHttpActionResult PostSong(JointModel playlist)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = SongPlaylistService();
+
+            if (!service.PostSong(playlist))
+                return InternalServerError();
+
+
+            return Ok();
+
+        }
+    }
+    [Authorize]
+    public class AddSongsToPlaylist : ApiController
+    {
     }
 }
-

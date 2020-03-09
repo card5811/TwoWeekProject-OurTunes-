@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="JointModel.cs" />
     <Compile Include="PlaylistCreate.cs" />
     <Compile Include="PlaylistDelete.cs" />
     <Compile Include="PlaylistEdit.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="SongEdit.cs" />
     <Compile Include="UserCreate.cs" />
     <Compile Include="UserDelete.cs" />
+    <Compile Include="UserEdit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
