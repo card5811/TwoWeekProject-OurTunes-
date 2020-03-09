@@ -25,6 +25,7 @@ namespace OurTunes.Service
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Profiles.Add(entity);
+
                 return ctx.SaveChanges() == 1;
             }
         }

@@ -9,8 +9,6 @@ namespace OurTunes.Model
 {
    public class PlaylistCreate
     {
-        public int PlaylistId { get; set; }
-
         [MinLength(1, ErrorMessage = "Gotta name it something.")]
         [MaxLength(30, ErrorMessage = "Make it something shorter please.")]
         public string PlaylistName { get; set; }

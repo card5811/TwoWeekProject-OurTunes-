@@ -22,6 +22,7 @@ namespace BlueBadgeProject.Controllers
         }
 
         //POST
+        [HttpPost]
         public IHttpActionResult Post(PlaylistCreate playlist)
         {
             if (!ModelState.IsValid)
@@ -55,5 +56,7 @@ namespace BlueBadgeProject.Controllers
 
             return Ok();
         }
+
+
     }
 }

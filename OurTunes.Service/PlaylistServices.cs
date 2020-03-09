@@ -15,7 +15,6 @@ namespace OurTunes.Service
             var entity =
                 new Playlist()
                 {
-                    PlaylistId = model.PlaylistId,
                     PlaylistName = model.PlaylistName,
                     UserId = model.UserId,
                     TotalTimeOfPlaylist = model.TotalTimeOfPlaylist
@@ -97,6 +96,22 @@ namespace OurTunes.Service
 
                 return ctx.SaveChanges() == 1;
             }
+        }
+
+        //Song Methods
+
+        public void PostSong(JointModel joint)
+        {
+            JointPlaylist addSong = new JointPlaylist();
+            addSong.PlaylistId = joint.PlaylistId;
+            addSong.SongId = joint.SongId;
+
+            using (var context = new ApplicationDbContext())
+            {
+                context.JointPlaylists.Add(addSong);
+                context.SaveChanges();
+                
+            };
         }
     }
 }
