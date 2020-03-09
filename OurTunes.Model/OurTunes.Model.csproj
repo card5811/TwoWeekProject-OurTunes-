@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="JointModel.cs" />
     <Compile Include="PlaylistCreate.cs" />
     <Compile Include="PlaylistDelete.cs" />
     <Compile Include="PlaylistEdit.cs" />
