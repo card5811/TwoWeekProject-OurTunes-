@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OurTunes.Data
 {
-    public class User
+    public class Profile
     {
         [Key]
         public int OwnerId { get; set; }

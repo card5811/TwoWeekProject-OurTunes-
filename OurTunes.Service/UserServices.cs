@@ -21,7 +21,7 @@ namespace OurTunes.Service
         public bool CreateUser(UserCreate model)
         {
             var entity =
-                new User()
+                new Profile()
                 {
                     OwnerId = model.OwnerId,
                     FName = model.FName,
