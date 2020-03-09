@@ -17,7 +17,7 @@ namespace OurTunes.Service
                 {
                     PlaylistId = model.PlaylistId,
                     PlaylistName = model.PlaylistName,
-                    UserId = model.UserId,
+                    OwnerId = model.OwnerId,
                     TotalTimeOfPlaylist = model.TotalTimeOfPlaylist
                 };
 
@@ -41,7 +41,7 @@ namespace OurTunes.Service
                                   new PlaylistEdit
                                   {
                                       PlaylistId = e.PlaylistId,
-                                      UserId = e.UserId,
+                                      OwnerId = e.OwnerId,
                                       PlaylistName = e.PlaylistName,
                                       TotalTimeOfPlaylist = e.TotalTimeOfPlaylist
                                   }

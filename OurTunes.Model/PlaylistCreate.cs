@@ -15,7 +15,7 @@ namespace OurTunes.Model
         [MaxLength(30, ErrorMessage = "Make it something shorter please.")]
         public string PlaylistName { get; set; }
 
-        public int UserId { get; set; }
+        public int OwnerId { get; set; }
 
         public string TotalTimeOfPlaylist { get; set; }
     }
