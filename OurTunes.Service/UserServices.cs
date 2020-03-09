@@ -49,6 +49,7 @@ namespace OurTunes.Service
                         e =>
                         new UserList
                         {
+                            OwnerId = e.OwnerId,
                             UserName = e.UserName
                         }
                         );
@@ -67,12 +68,11 @@ namespace OurTunes.Service
                 return
                     new UserCreate
                     {
-
+                        OwnerId = entity.OwnerId,
                         UserName = entity.UserName,
                         Email = entity.Email,
                         FName = entity.FName,
                         LName = entity.LName
-
                     };
             }
         }
