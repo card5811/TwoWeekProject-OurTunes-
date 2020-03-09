@@ -53,6 +53,8 @@ namespace OurTunes.Service
 
         public PlaylistEdit GetPlaylistByName(string name)
         {
+            PlaylistSongServices theSong = new PlaylistSongServices();
+
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
@@ -65,6 +67,7 @@ namespace OurTunes.Service
                         PlaylistName = entity.PlaylistName,
                         TotalTimeOfPlaylist = entity.TotalTimeOfPlaylist,
                     };
+
             }
         }
 
@@ -99,6 +102,7 @@ namespace OurTunes.Service
             }
         }
     }
+    //-----------Get/Post/Delete Songs From a Playlist----------------//
 
     public class PlaylistSongServices
     {
@@ -114,6 +118,41 @@ namespace OurTunes.Service
                 return context.SaveChanges()==1;
             };
             
+        }
+
+        public IEnumerable<JointSongList> GetPlaylistSongs(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .JointPlaylists
+                        .Where(e => e.PlaylistId == id)
+                        .Select(
+                            e =>
+                                new JointSongList
+                                {
+                                    SongName = e.Song.SongName,
+                                    SongLength = e.Song.SongLength,
+                                    AlbumName = e.Song.AlbumName,
+                                    ArtistName = e.Song.ArtistName,
+                                }
+                        ) ;
+
+                return query.ToArray();
+            }
+        }
+
+        public bool DeleteSongFromPlaylist(int songId, int playlistId)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                var deleteSong = context.JointPlaylists.Single(e => e.PlaylistId == playlistId && e.SongId == songId);
+
+                context.JointPlaylists.Remove(deleteSong);
+
+                return context.SaveChanges() == 1;
+            }
         }
     }
 }

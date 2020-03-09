@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="JointModel.cs" />
+    <Compile Include="JointSongList.cs" />
     <Compile Include="PlaylistCreate.cs" />
     <Compile Include="PlaylistDelete.cs" />
     <Compile Include="PlaylistEdit.cs" />
@@ -72,6 +73,12 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OurTunes.Data\OurTunes.Data.csproj">
+      <Project>{98ECC7F9-C746-42A6-9F40-54DE5AA136F2}</Project>
+      <Name>OurTunes.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
