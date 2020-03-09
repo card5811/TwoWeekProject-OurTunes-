@@ -119,7 +119,7 @@ namespace BlueBadgeProject.Controllers
         }
 
         [HttpDelete]
-        public IHttpActionResult Delete(int id)
+        public IHttpActionResult Delete(UserDelete id)
         {
             var service = CreateUserService();
 
