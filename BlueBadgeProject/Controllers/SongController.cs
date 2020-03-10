@@ -55,6 +55,13 @@ namespace BlueBadgeProject.Controllers
             return Ok(song);
         }
 
+        public IHttpActionResult GetArtist(string ArtistName)
+        {
+            SongServices songServices = new SongServices();
+            var song = songServices.GetSongByArtistName(ArtistName);
+            return Ok(song);
+        }
+
         public IHttpActionResult Put(SongEdit song)
         {
             if (!ModelState.IsValid)

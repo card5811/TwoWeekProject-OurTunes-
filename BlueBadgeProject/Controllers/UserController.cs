@@ -13,6 +13,7 @@ namespace BlueBadgeProject.Controllers
     [Authorize]
     public class UserController : ApiController
     {
+
         public IHttpActionResult Get()
         {
             UserServices userServices = CreateUserService();
