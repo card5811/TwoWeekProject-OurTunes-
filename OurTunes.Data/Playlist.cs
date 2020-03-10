@@ -18,7 +18,7 @@ namespace OurTunes.Data
 
         [ForeignKey(nameof(User))]
         public int OwnerId { get; set; }
-        public virtual User User { get; set; }
+        public virtual Profile User { get; set; }
 
         public string TotalTimeOfPlaylist { get; set; }
         //come back and work with song length 
