@@ -10,9 +10,6 @@ namespace OurTunes.Service
 {
     public class SongServices
     {
-        private readonly Song _song;
-
-
         public bool CreateSong(SongCreate model)
         {
             var entity =
@@ -32,14 +29,14 @@ namespace OurTunes.Service
             }
         }
 
-        public IEnumerable<SongEdit> GetSongs()
+        public IEnumerable<SongEdit> GetAllSongs()
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
                     ctx
                         .Songs
-                        .Where(e => e.SongId == _song.SongId)
+                        .Where(e => e.SongId == e.SongId)
                         .Select(
                             e =>
                                 new SongEdit
@@ -84,6 +81,26 @@ namespace OurTunes.Service
                     ctx
                         .Songs
                         .Single(e => e.SongName == name);
+                return
+                    new SongEdit
+                    {
+                        SongId = entity.SongId,
+                        SongName = entity.SongName,
+                        AlbumName = entity.AlbumName,
+                        ArtistName = entity.ArtistName,
+                        SongLength = entity.SongLength
+                    };
+            }
+        }
+
+        public SongEdit GetSongByArtistName(string name)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Songs
+                        .Single(e => e.ArtistName == name);
                 return
                     new SongEdit
                     {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OurTunes.Model
 {
-    public class SongEdit
+    class SongDelete
     {
         public int SongId { get; set; }
 
@@ -14,9 +14,7 @@ namespace OurTunes.Model
 
         public string AlbumName { get; set; }
 
-        public string SongLength { get; set; }
-
-        public string ArtistName { get; set; }
+        public int SongLength { get; set; }
 
     }
 }

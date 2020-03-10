@@ -1,5 +1,7 @@
-﻿using OurTunes.Data;
+﻿using OurTunes;
+using OurTunes.Data;
 using OurTunes.Model;
+using OurTunes.Model.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,16 +12,24 @@ namespace OurTunes.Service
 {
     public class UserServices
     {
+        private readonly string _userId;
+
+        public UserServices(string userId)
+        {
+            _userId = userId;
+        }
+
         public bool CreateUser(UserCreate model)
         {
             var entity =
-                new User()
+                new Profile()
                 {
+                    OwnerId = model.OwnerId,
+                    UserId = model.UserId,
                     FName = model.FName,
                     LName = model.LName,
                     UserName = model.UserName,
                     Email = model.Email
-
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -27,6 +37,26 @@ namespace OurTunes.Service
                 ctx.Profiles.Add(entity);
 
                 return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public IEnumerable<UserList> GetUsers()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                    .Profiles
+                    .Where(e => e.UserId == _userId)
+                    .Select(
+                        e =>
+                        new UserList
+                        {
+                            OwnerId = e.OwnerId,
+                            UserName = e.UserName
+                        }
+                        );
+                return query.ToArray();
             }
         }
 
@@ -41,7 +71,27 @@ namespace OurTunes.Service
                 return
                     new UserCreate
                     {
-                       
+                        OwnerId = entity.OwnerId,
+                        UserName = entity.UserName,
+                        Email = entity.Email,
+                        FName = entity.FName,
+                        LName = entity.LName
+                    };
+            }
+        }
+
+        public UserCreate GetUserById(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Profiles
+                        .Single(e => e.OwnerId == id);
+                return
+                    new UserCreate
+                    {
+
                         UserName = entity.UserName,
                         Email = entity.Email,
                         FName = entity.FName,
@@ -70,20 +120,22 @@ namespace OurTunes.Service
             }
         }
 
-        public bool DeleteUser(string userName)
+        public bool DeleteUser(UserDelete user)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                     .Profiles
-                    .Single(e => e.UserName == userName);
+                    .Single(e => e.OwnerId == user.OwnerId);
 
                 ctx.Profiles.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
             }
         }
+
     }
 }
+
 

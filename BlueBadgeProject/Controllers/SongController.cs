@@ -13,10 +13,10 @@ namespace BlueBadgeProject.Controllers
     [Authorize]
     public class SongController : ApiController
     {
-        public IHttpActionResult Get()
+        public IHttpActionResult GetSongByName()
         {
             SongServices songService = CreateSongService();
-            var songs = songService.GetSongs();
+            var songs = songService.GetAllSongs();
             return Ok(songs);
 
         }
@@ -52,6 +52,13 @@ namespace BlueBadgeProject.Controllers
         {
             SongServices songServices = new SongServices();
             var song = songServices.GetSongById(SongId);
+            return Ok(song);
+        }
+
+        public IHttpActionResult GetArtist(string ArtistName)
+        {
+            SongServices songServices = new SongServices();
+            var song = songServices.GetSongByArtistName(ArtistName);
             return Ok(song);
         }
 

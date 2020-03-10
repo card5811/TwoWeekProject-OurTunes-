@@ -11,8 +11,11 @@ using System.Web.Http;
 namespace BlueBadgeProject.Controllers
 {
     [Authorize]
+    [RoutePrefix("api/Playlist")]
     public class PlaylistController : ApiController
     {
+
+       // private readonly int _
         //GET ALL
         public IHttpActionResult Get()
         {
@@ -22,7 +25,6 @@ namespace BlueBadgeProject.Controllers
         }
 
         //POST
-        [HttpPost]
         public IHttpActionResult Post(PlaylistCreate playlist)
         {
             if (!ModelState.IsValid)
@@ -57,6 +59,68 @@ namespace BlueBadgeProject.Controllers
             return Ok();
         }
 
+        public IHttpActionResult Delete(int id)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var services = CreatePlaylistService();
+
+            if (!services.DeletePlaylist(id))
+                return InternalServerError();
+            return Ok();
+        }
+        //------------------Post/Get/Delete Songs For Playlist --------------//
+        private PlaylistSongServices SongPlaylistService()
+        {
+            var playlistServices = new PlaylistSongServices();
+            return playlistServices;
+        }
+
+        [HttpPost]
+        [Route("PostSong")]
+        public IHttpActionResult PostSong(JointModel playlist)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = SongPlaylistService();
+
+            if (!service.PostSong(playlist))
+                return InternalServerError();
+
+
+            return Ok();
+
+        }
+        [HttpGet]
+        [Route("GetPlaylistSongs")]
+        public IHttpActionResult GetSongsInPlaylist(int id)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = SongPlaylistService();
+
+            var songList = service.GetPlaylistSongs(id);
+
+            return Ok(songList);
+
+        }
+        [HttpDelete]
+        [Route("DeleteSongFromPlaylist")]
+        public IHttpActionResult DeleteSongFromPlaylist(int songId, int playlistId)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var service = SongPlaylistService();
+
+            if (!service.DeleteSongFromPlaylist(songId, playlistId))
+                return InternalServerError();
+
+            return Ok();
+
+        }
 
     }
 }

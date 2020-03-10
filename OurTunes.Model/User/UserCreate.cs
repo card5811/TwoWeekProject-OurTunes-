@@ -5,11 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OurTunes.Model
+namespace OurTunes.Model.User
 {
    public class UserCreate
     {
-      //  public Guid UserId { get; set; }
+        public int OwnerId { get; set; }
+
+        public string UserId { get; set; }
         
         public string UserName { get; set; }
 

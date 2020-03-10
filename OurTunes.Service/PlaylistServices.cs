@@ -16,8 +16,7 @@ namespace OurTunes.Service
                 new Playlist()
                 {
                     PlaylistName = model.PlaylistName,
-                    UserId = model.UserId,
-                    TotalTimeOfPlaylist = model.TotalTimeOfPlaylist
+                    OwnerId = model.OwnerId,
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -27,31 +26,32 @@ namespace OurTunes.Service
             }
         }
 
-     public IEnumerable<PlaylistEdit> GetPlaylists()
-          {
-              using (var ctx = new ApplicationDbContext())
-              {
-                  var query =
-                      ctx
-                          .Playlists
-                          .Where(e => e.PlaylistId == e.PlaylistId)
-                          .Select(
-                              e =>
-                                  new PlaylistEdit
-                                  {
-                                      PlaylistId = e.PlaylistId,
-                                      UserId = e.UserId,
-                                      PlaylistName = e.PlaylistName,
-                                      TotalTimeOfPlaylist = e.TotalTimeOfPlaylist
-                                  }
-                          );
+        public IEnumerable<PlaylistEdit> GetPlaylists()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Playlists
+                        .Where(e => e.PlaylistId == e.PlaylistId)
+                        .Select(
+                            e =>
+                                new PlaylistEdit
+                                {
+                                    PlaylistId = e.PlaylistId,
+                                    OwnerId = e.OwnerId,
+                                    PlaylistName = e.PlaylistName,
+                                }
+                        );
 
-                  return query.ToArray();
-              }
-          }
+                return query.ToArray();
+            }
+        }
 
         public PlaylistEdit GetPlaylistByName(string name)
         {
+            PlaylistSongServices theSong = new PlaylistSongServices();
+
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
@@ -62,7 +62,6 @@ namespace OurTunes.Service
                     new PlaylistEdit
                     {
                         PlaylistName = entity.PlaylistName,
-                        TotalTimeOfPlaylist = entity.TotalTimeOfPlaylist,
                     };
             }
         }
@@ -77,7 +76,6 @@ namespace OurTunes.Service
                     .Single(e => e.PlaylistId == model.PlaylistId);
 
                 entity.PlaylistName = model.PlaylistName;
-                entity.TotalTimeOfPlaylist = model.TotalTimeOfPlaylist;
 
                 return ctx.SaveChanges() == 1;
             }
@@ -97,10 +95,14 @@ namespace OurTunes.Service
                 return ctx.SaveChanges() == 1;
             }
         }
+    }
 
-        //Song Methods
+    //-----------Get/Post/Delete Songs From a Playlist----------------//
 
-        public void PostSong(JointModel joint)
+    public class PlaylistSongServices
+    {
+
+        public bool PostSong(JointModel joint)
         {
             JointPlaylist addSong = new JointPlaylist();
             addSong.PlaylistId = joint.PlaylistId;
@@ -109,9 +111,44 @@ namespace OurTunes.Service
             using (var context = new ApplicationDbContext())
             {
                 context.JointPlaylists.Add(addSong);
-                context.SaveChanges();
-                
+                return context.SaveChanges() == 1;
             };
+        }
+
+        public IEnumerable<JointSongList> GetPlaylistSongs(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .JointPlaylists
+                        .Where(e => e.PlaylistId == id)
+                        .Select(
+                            e =>
+                                new JointSongList
+                                {
+                                    SongName = e.Song.SongName,
+                                    SongLength = e.Song.SongLength.ToString(),
+                                    AlbumName = e.Song.AlbumName,
+                                    ArtistName = e.Song.ArtistName,
+                                    
+                                }
+                        );
+
+                return query.ToArray();
+            }
+        }
+
+        public bool DeleteSongFromPlaylist(int songId, int playlistId)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                var deleteSong = context.JointPlaylists.Single(e => e.PlaylistId == playlistId && e.SongId == songId);
+
+                context.JointPlaylists.Remove(deleteSong);
+
+                return context.SaveChanges() == 1;
+            }
         }
     }
 }

@@ -7,16 +7,13 @@ using System.Threading.Tasks;
 
 namespace OurTunes.Model
 {
-   public class PlaylistEdit
+   public class PlaylistCreate
     {
-        public int PlaylistId { get; set; }
-
-        public int UserId { get; set; }
-
         [MinLength(1, ErrorMessage = "Gotta name it something.")]
         [MaxLength(30, ErrorMessage = "Make it something shorter please.")]
         public string PlaylistName { get; set; }
 
-        public string TotalTimeOfPlaylist { get; set; }
+        public int OwnerId { get; set; }
+
     }
 }
