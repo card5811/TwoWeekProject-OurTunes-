@@ -10,6 +10,7 @@ namespace OurTunes.Model
    public class UserCreate
     {
         public int OwnerId { get; set; }
+
         public string UserId { get; set; }
         
         public string UserName { get; set; }

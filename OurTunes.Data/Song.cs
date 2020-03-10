@@ -24,6 +24,5 @@ namespace OurTunes.Data
 
         [Required]
         public string SongLength { get; set; }
-
     }
 }
