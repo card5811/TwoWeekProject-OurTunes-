@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialMigration : DbMigration
+    public partial class InitialCreate : DbMigration
     {
         public override void Up()
         {
@@ -27,19 +27,18 @@
                     {
                         PlaylistId = c.Int(nullable: false, identity: true),
                         PlaylistName = c.String(nullable: false),
-                        OwnerId = c.Int(nullable: false),
+                        UserId = c.Int(nullable: false),
                         TotalTimeOfPlaylist = c.String(),
                     })
                 .PrimaryKey(t => t.PlaylistId)
-                .ForeignKey("dbo.User", t => t.OwnerId, cascadeDelete: true)
-                .Index(t => t.OwnerId);
+                .ForeignKey("dbo.User", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.UserId);
             
             CreateTable(
                 "dbo.User",
                 c => new
                     {
                         OwnerId = c.Int(nullable: false, identity: true),
-                        UserId = c.Guid(nullable: false),
                         UserName = c.String(nullable: false),
                         FName = c.String(nullable: false),
                         LName = c.String(nullable: false),
@@ -139,12 +138,12 @@
             DropForeignKey("dbo.IdentityUserRole", "IdentityRole_Id", "dbo.IdentityRole");
             DropForeignKey("dbo.JointPlaylist", "SongId", "dbo.Song");
             DropForeignKey("dbo.JointPlaylist", "PlaylistId", "dbo.Playlist");
-            DropForeignKey("dbo.Playlist", "OwnerId", "dbo.User");
+            DropForeignKey("dbo.Playlist", "UserId", "dbo.User");
             DropIndex("dbo.IdentityUserLogin", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserClaim", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserRole", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserRole", new[] { "IdentityRole_Id" });
-            DropIndex("dbo.Playlist", new[] { "OwnerId" });
+            DropIndex("dbo.Playlist", new[] { "UserId" });
             DropIndex("dbo.JointPlaylist", new[] { "PlaylistId" });
             DropIndex("dbo.JointPlaylist", new[] { "SongId" });
             DropTable("dbo.IdentityUserLogin");

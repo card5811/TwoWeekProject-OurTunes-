@@ -119,6 +119,5 @@ namespace BlueBadgeProject.Controllers
             return Ok();
 
         }
-
     }
 }

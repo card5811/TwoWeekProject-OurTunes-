@@ -21,5 +21,6 @@ namespace OurTunes.Data
         [ForeignKey(nameof(Playlist))]
         public int PlaylistId { get; set; }
         public virtual Playlist Playlist { get; set; }
+
     }
 }

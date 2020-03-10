@@ -12,6 +12,7 @@ namespace OurTunes.Service
     {
         public bool CreatePlaylist(PlaylistCreate model)
         {
+
             var entity =
                 new Playlist()
                 {
@@ -41,7 +42,7 @@ namespace OurTunes.Service
                                   new PlaylistEdit
                                   {
                                       PlaylistId = e.PlaylistId,
-                                      OwnerId = e.OwnerId,
+                                      OwnerId = e.User.OwnerId,
                                       PlaylistName = e.PlaylistName,
                                       TotalTimeOfPlaylist = e.TotalTimeOfPlaylist
                                   }
