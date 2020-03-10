@@ -9,8 +9,8 @@ namespace OurTunes.Model
 {
    public class UserCreate
     {
-        //public Guid UserId { get; set; }
         public int OwnerId { get; set; }
+        public string UserId { get; set; }
         
         public string UserName { get; set; }
 

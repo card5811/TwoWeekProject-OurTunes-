@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,8 +14,10 @@ namespace OurTunes.Data
         [Key]
         public int OwnerId { get; set; }
 
-        public Guid UserId { get; set; }
-
+        public string UserId { get; set; }
+       // ApplicationUser user = new ApplicationUser();
+       // var userId = Guid.Parse(user.Id);
+         //       return userId.ToString();
         [Required]
         public string UserName { get; set; }
 
@@ -22,8 +26,6 @@ namespace OurTunes.Data
 
         [Required]
         public string LName { get; set; }
-
-        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
     }

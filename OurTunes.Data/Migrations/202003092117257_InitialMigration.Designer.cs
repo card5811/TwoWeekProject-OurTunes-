@@ -13,7 +13,7 @@ namespace OurTunes.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202003091440096_InitialMigration"; }
+            get { return "202003092117257_InitialMigration"; }
         }
         
         string IMigrationMetadata.Source
