@@ -332,6 +332,12 @@ namespace BlueBadgeProject.Controllers
             var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+            ApplicationDbContext ctx = new ApplicationDbContext();
+            Profile profile = new Profile();
+            
+
+            profile.UserId = user.Id;
+            ctx.SaveChanges();
 
             if (!result.Succeeded)
             {

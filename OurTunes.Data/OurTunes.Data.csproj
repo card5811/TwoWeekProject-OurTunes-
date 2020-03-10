@@ -88,13 +88,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="JointPlaylist.cs" />
-    <Compile Include="Migrations\202003061732021_InitialCreate.cs" />
-    <Compile Include="Migrations\202003061732021_InitialCreate.Designer.cs">
-      <DependentUpon>202003061732021_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003101323203_TestMigra.cs" />
-    <Compile Include="Migrations\202003101323203_TestMigra.designer.cs">
-      <DependentUpon>202003101323203_TestMigra.cs</DependentUpon>
+    <Compile Include="Migrations\202003092117257_InitialMigration.cs" />
+    <Compile Include="Migrations\202003092117257_InitialMigration.designer.cs">
+      <DependentUpon>202003092117257_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Playlist.cs" />
@@ -108,11 +104,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003061732021_InitialCreate.resx">
-      <DependentUpon>202003061732021_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003101323203_TestMigra.resx">
-      <DependentUpon>202003101323203_TestMigra.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003092117257_InitialMigration.resx">
+      <DependentUpon>202003092117257_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

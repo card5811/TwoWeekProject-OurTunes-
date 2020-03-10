@@ -10,32 +10,52 @@ namespace OurTunes.Service
 {
     public class UserServices
     {
-        private readonly Guid _userId;
+        private readonly string _userId;
 
 
-        public UserServices(Guid userId)
+        public UserServices(string userId)
         {
             _userId = userId;
         }
 
-        public bool CreateUser(UserCreate model)
-        {
-            var entity =
-                new User()
-                {
-                    OwnerId = model.OwnerId,
-                    FName = model.FName,
-                    LName = model.LName,
-                    UserName = model.UserName,
-                    Email = model.Email
-                };
+         public bool CreateUser(UserCreate model)
+         {
+             var entity =
+                 new Profile()
+                 {
+                     OwnerId = model.OwnerId,
+                     UserId = model.UserId,
+                     FName = model.FName,
+                     LName = model.LName,
+                     UserName = model.UserName,
+                     Email = model.Email
+                 };
 
+             using (var ctx = new ApplicationDbContext())
+             {
+                 ctx.Profiles.Add(entity);
+                 return ctx.SaveChanges() == 1;
+             }
+         }
+   /*     public IEnumerable<UserList> SetUserInfo()
+        {
             using (var ctx = new ApplicationDbContext())
             {
-                ctx.Profiles.Add(entity);
-                return ctx.SaveChanges() == 1;
+                var query =
+                    ctx
+                    .Profiles
+                    .Where(e => e.UserId == _userId)
+                    .Select(
+                        e =>
+                        new UserList
+                        {
+                            OwnerId = e.OwnerId,
+                            UserName = e.UserName
+                        }
+                        );
+                return query.ToArray();
             }
-        }
+        }*/
 
         public IEnumerable<UserList> GetUsers()
         {
@@ -49,6 +69,7 @@ namespace OurTunes.Service
                         e =>
                         new UserList
                         {
+                            OwnerId = e.OwnerId,
                             UserName = e.UserName
                         }
                         );
@@ -67,12 +88,11 @@ namespace OurTunes.Service
                 return
                     new UserCreate
                     {
-
+                        OwnerId = entity.OwnerId,
                         UserName = entity.UserName,
                         Email = entity.Email,
                         FName = entity.FName,
                         LName = entity.LName
-
                     };
             }
         }

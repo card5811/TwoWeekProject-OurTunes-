@@ -13,60 +13,6 @@ namespace BlueBadgeProject.Controllers
     [Authorize]
     public class UserController : ApiController
     {
-        /* public IHttpActionResult Post(UserCreate user)
-          {
-              if (!ModelState.IsValid)
-                  return BadRequest(ModelState);
-
-              UserServices ourUser = new UserServices();
-              ourUser.CreateUser(user);
-              return Ok();
-          }
-
-          private UserServices CreateUserService()
-          {
-              var userId = Guid.Parse(User.Identity.GetUserId());
-              var userService = new UserServices(userId);
-              return userService;
-          }
-
-        public IHttpActionResult Get(string userName)
-          {
-              if (!ModelState.IsValid)
-                  return BadRequest(ModelState);
-
-              UserServices userService = new UserServices();
-              var user = userService.GetUserByUserName(userName);
-              return Ok(user);
-          }  
-
-              public IHttpActionResult GetUser()
-          {
-              UserServices userService = CreateUserService()
-                  var user = userService.user
-
-
-         public IHttpActionResult Put(UserEdit userName)
-          {
-              if (!ModelState.IsValid)
-                  return BadRequest(ModelState);
-
-              UserServices userService = new UserServices();
-              var user = userService.UpdateUser(userName);
-              return Ok();
-          } 
-
-          public IHttpActionResult Delete(string userName)
-          {
-              if (!ModelState.IsValid)
-                  return BadRequest(ModelState);
-
-              UserServices ourUser = new UserServices();
-              ourUser.DeleteUser(userName);
-              return Ok();
-          }*/
-
-
 
         public IHttpActionResult Get()
         {
@@ -81,7 +27,9 @@ namespace BlueBadgeProject.Controllers
                 return BadRequest(ModelState);
 
             var service = CreateUserService();
-
+            user.UserId = User.Identity.GetUserId();
+            user.Email = User.Identity.GetUserName();
+                        
             if (!service.CreateUser(user))
                 return InternalServerError();
 
@@ -89,15 +37,16 @@ namespace BlueBadgeProject.Controllers
         }
 
         //post
-        private UserServices CreateUserService()
-        {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var userServices = new UserServices(userId);
-                return userServices;
-        }
+         private UserServices CreateUserService()
+         {
+           var userId = User.Identity.GetUserId();
+             var userServices = new UserServices(userId);
+                 return userServices;
+         } 
 
-        //get
-        public IHttpActionResult Get(string userName)
+
+            //get
+            public IHttpActionResult Get(string userName)
         {
             UserServices userServices = CreateUserService();
             var user = userServices.GetUserByUserName(userName);
