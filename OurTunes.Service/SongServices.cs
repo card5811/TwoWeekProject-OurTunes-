@@ -93,6 +93,26 @@ namespace OurTunes.Service
             }
         }
 
+        public SongEdit GetSongByArtistName(string name)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Songs
+                        .Single(e => e.ArtistName == name);
+                return
+                    new SongEdit
+                    {
+                        SongId = entity.SongId,
+                        SongName = entity.SongName,
+                        AlbumName = entity.AlbumName,
+                        ArtistName = entity.ArtistName,
+                        SongLength = entity.SongLength
+                    };
+            }
+        }
+
         public bool UpdateSong(SongEdit model)
         {
             using (var ctx = new ApplicationDbContext())
