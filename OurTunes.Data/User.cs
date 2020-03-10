@@ -15,9 +15,7 @@ namespace OurTunes.Data
         public int OwnerId { get; set; }
 
         public string UserId { get; set; }
-       // ApplicationUser user = new ApplicationUser();
-       // var userId = Guid.Parse(user.Id);
-         //       return userId.ToString();
+
         [Required]
         public string UserName { get; set; }
 
@@ -26,7 +24,7 @@ namespace OurTunes.Data
 
         [Required]
         public string LName { get; set; }
-        public string Email { get; set; }
 
+        public string Email { get; set; }
     }
 }

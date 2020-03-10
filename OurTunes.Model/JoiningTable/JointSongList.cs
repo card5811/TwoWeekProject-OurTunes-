@@ -10,9 +10,11 @@ namespace OurTunes.Model
     public class JointSongList
     {
         public string SongName { get; set; }
-        public string AlbumName { get; set; }
-        public string SongLength { get; set; }
-        public string ArtistName { get; set; }
 
+        public string AlbumName { get; set; }
+
+        public string SongLength { get; set; }
+
+        public string ArtistName { get; set; }
     }
 }
