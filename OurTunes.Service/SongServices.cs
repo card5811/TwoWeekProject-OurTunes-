@@ -19,7 +19,8 @@ namespace OurTunes.Service
                     SongName = model.SongName,
                     AlbumName = model.AlbumName,
                     SongLength = model.SongLength,
-                    ArtistName = model.ArtistName
+                    ArtistName = model.ArtistName,
+                    SongGenre = model.SongGenre
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -45,7 +46,8 @@ namespace OurTunes.Service
                                     ArtistName = e.ArtistName,
                                     AlbumName = e.AlbumName,
                                     SongLength = e.SongLength,
-                                    SongName = e.SongName
+                                    SongName = e.SongName,
+                                    SongGenre = e.SongGenre
                                 }
                         );
 
@@ -68,7 +70,8 @@ namespace OurTunes.Service
                         SongName = entity.SongName,
                         AlbumName = entity.AlbumName,
                         ArtistName = entity.ArtistName,
-                        SongLength = entity.SongLength
+                        SongLength = entity.SongLength,
+                        SongGenre = entity.SongGenre
                     };
             }
         }
@@ -88,7 +91,8 @@ namespace OurTunes.Service
                         SongName = entity.SongName,
                         AlbumName = entity.AlbumName,
                         ArtistName = entity.ArtistName,
-                        SongLength = entity.SongLength
+                        SongLength = entity.SongLength,
+                        SongGenre = entity.SongGenre
                     };
             }
         }
@@ -108,10 +112,33 @@ namespace OurTunes.Service
                         SongName = entity.SongName,
                         AlbumName = entity.AlbumName,
                         ArtistName = entity.ArtistName,
-                        SongLength = entity.SongLength
+                        SongLength = entity.SongLength,
+                        SongGenre = entity.SongGenre
                     };
             }
         }
+
+        public SongEdit GetSongByGenre(string name)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Songs
+                    .Single(e => e.SongGenre == name);
+                return
+                    new SongEdit
+                    {
+                        SongId = entity.SongId,
+                        SongName = entity.SongName,
+                        AlbumName = entity.AlbumName,
+                        ArtistName = entity.ArtistName,
+                        SongLength = entity.SongLength,
+                        SongGenre = entity.SongGenre
+                    };
+            }
+        }
+
 
         public bool UpdateSong(SongEdit model)
         {
@@ -126,12 +153,13 @@ namespace OurTunes.Service
                 entity.ArtistName = model.ArtistName;
                 entity.AlbumName = model.AlbumName;
                 entity.SongLength = model.SongLength;
+                entity.SongGenre = model.SongGenre;
 
                 return ctx.SaveChanges() == 1;
             }
         }
 
-        public bool DeleteNote(int songId)
+        public bool DeleteSong(int songId)
         {
             using (var ctx = new ApplicationDbContext())
             {
