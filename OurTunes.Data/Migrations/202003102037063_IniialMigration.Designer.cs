@@ -7,13 +7,13 @@ namespace OurTunes.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class InitialMigration : IMigrationMetadata
+    public sealed partial class IniialMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialMigration));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(IniialMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "202003092117257_InitialMigration"; }
+            get { return "202003102037063_IniialMigration"; }
         }
         
         string IMigrationMetadata.Source
