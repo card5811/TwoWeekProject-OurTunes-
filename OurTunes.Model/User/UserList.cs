@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace OurTunes.Model
 {
-   public class JointModel
+    public class UserList
     {
-        public int SongId { get; set; }
-        public int PlaylistId { get; set; }
+        public Guid UserId { get; set; }
+        public int OwnerId { get; set; }
+        public string UserName { get; set; }
     }
 }

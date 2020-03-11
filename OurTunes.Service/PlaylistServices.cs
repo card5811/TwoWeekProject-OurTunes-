@@ -28,28 +28,28 @@ namespace OurTunes.Service
             }
         }
 
-     public IEnumerable<PlaylistEdit> GetPlaylists()
-          {
-              using (var ctx = new ApplicationDbContext())
-              {
-                  var query =
-                      ctx
-                          .Playlists
-                          .Where(e => e.PlaylistId == e.PlaylistId)
-                          .Select(
-                              e =>
-                                  new PlaylistEdit
-                                  {
-                                      PlaylistId = e.PlaylistId,
-                                      OwnerId = e.OwnerId,
-                                      PlaylistName = e.PlaylistName,
-                                      TotalTimeOfPlaylist = e.TotalTimeOfPlaylist
-                                  }
-                          );
+        public IEnumerable<PlaylistEdit> GetPlaylists()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Playlists
+                        .Where(e => e.PlaylistId == e.PlaylistId)
+                        .Select(
+                            e =>
+                                new PlaylistEdit
+                                {
+                                    PlaylistId = e.PlaylistId,
+                                    OwnerId = e.OwnerId,
+                                    PlaylistName = e.PlaylistName,
+                                    TotalTimeOfPlaylist = e.TotalTimeOfPlaylist
+                                }
+                        );
 
-                  return query.ToArray();
-              }
-          }
+                return query.ToArray();
+            }
+        }
 
         public PlaylistEdit GetPlaylistByName(string name)
         {
@@ -67,7 +67,6 @@ namespace OurTunes.Service
                         PlaylistName = entity.PlaylistName,
                         TotalTimeOfPlaylist = entity.TotalTimeOfPlaylist,
                     };
-
             }
         }
 
@@ -115,9 +114,8 @@ namespace OurTunes.Service
             using (var context = new ApplicationDbContext())
             {
                 context.JointPlaylists.Add(addSong);
-                return context.SaveChanges()==1;
+                return context.SaveChanges() == 1;
             };
-            
         }
 
         public IEnumerable<JointSongList> GetPlaylistSongs(int id)
@@ -137,7 +135,7 @@ namespace OurTunes.Service
                                     AlbumName = e.Song.AlbumName,
                                     ArtistName = e.Song.ArtistName,
                                 }
-                        ) ;
+                        );
 
                 return query.ToArray();
             }

@@ -12,50 +12,30 @@ namespace OurTunes.Service
     {
         private readonly string _userId;
 
-
         public UserServices(string userId)
         {
             _userId = userId;
         }
 
-         public bool CreateUser(UserCreate model)
-         {
-             var entity =
-                 new Profile()
-                 {
-                     OwnerId = model.OwnerId,
-                     UserId = model.UserId,
-                     FName = model.FName,
-                     LName = model.LName,
-                     UserName = model.UserName,
-                     Email = model.Email
-                 };
-
-             using (var ctx = new ApplicationDbContext())
-             {
-                 ctx.Profiles.Add(entity);
-                 return ctx.SaveChanges() == 1;
-             }
-         }
-   /*     public IEnumerable<UserList> SetUserInfo()
+        public bool CreateUser(UserCreate model)
         {
+            var entity =
+                new Profile()
+                {
+                    OwnerId = model.OwnerId,
+                    UserId = model.UserId,
+                    FName = model.FName,
+                    LName = model.LName,
+                    UserName = model.UserName,
+                    Email = model.Email
+                };
+
             using (var ctx = new ApplicationDbContext())
             {
-                var query =
-                    ctx
-                    .Profiles
-                    .Where(e => e.UserId == _userId)
-                    .Select(
-                        e =>
-                        new UserList
-                        {
-                            OwnerId = e.OwnerId,
-                            UserName = e.UserName
-                        }
-                        );
-                return query.ToArray();
+                ctx.Profiles.Add(entity);
+                return ctx.SaveChanges() == 1;
             }
-        }*/
+        }
 
         public IEnumerable<UserList> GetUsers()
         {
@@ -118,7 +98,7 @@ namespace OurTunes.Service
             }
         }
 
-            public bool UpdateUser(UserEdit model)
+        public bool UpdateUser(UserEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {
