@@ -23,6 +23,9 @@ namespace OurTunes.Data
         public string AlbumName { get; set; }
 
         [Required]
-        public int SongLength { get; set; }
+        public string SongLength { get; set; }
+
+        [Required]
+        public string SongGenre { get; set; }
     }
 }
