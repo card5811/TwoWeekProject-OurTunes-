@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OurTunes.Model
+namespace OurTunes.Model.User
 {
    public class UserCreate
     {

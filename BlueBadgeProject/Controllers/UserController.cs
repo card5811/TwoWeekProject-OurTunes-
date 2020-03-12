@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using OurTunes.Model;
+using OurTunes.Model.User;
 using OurTunes.Service;
 using System;
 using System.Collections.Generic;
