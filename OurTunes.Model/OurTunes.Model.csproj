@@ -63,6 +63,7 @@
     <Compile Include="Playlist\PlaylistDelete.cs" />
     <Compile Include="Playlist\PlaylistEdit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SongRate\RateCreate.cs" />
     <Compile Include="Song\SongCreate.cs" />
     <Compile Include="Song\SongDelete.cs" />
     <Compile Include="Song\SongEdit.cs" />

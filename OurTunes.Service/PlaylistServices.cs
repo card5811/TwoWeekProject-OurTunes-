@@ -15,10 +15,8 @@ namespace OurTunes.Service
             var entity =
                 new Playlist()
                 {
-                    PlaylistId = model.PlaylistId,
                     PlaylistName = model.PlaylistName,
                     OwnerId = model.OwnerId,
-                    TotalTimeOfPlaylist = model.TotalTimeOfPlaylist
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -43,7 +41,6 @@ namespace OurTunes.Service
                                     PlaylistId = e.PlaylistId,
                                     OwnerId = e.OwnerId,
                                     PlaylistName = e.PlaylistName,
-                                    TotalTimeOfPlaylist = e.TotalTimeOfPlaylist
                                 }
                         );
 
@@ -65,7 +62,6 @@ namespace OurTunes.Service
                     new PlaylistEdit
                     {
                         PlaylistName = entity.PlaylistName,
-                        TotalTimeOfPlaylist = entity.TotalTimeOfPlaylist,
                     };
             }
         }
@@ -80,7 +76,6 @@ namespace OurTunes.Service
                     .Single(e => e.PlaylistId == model.PlaylistId);
 
                 entity.PlaylistName = model.PlaylistName;
-                entity.TotalTimeOfPlaylist = model.TotalTimeOfPlaylist;
 
                 return ctx.SaveChanges() == 1;
             }
@@ -106,6 +101,7 @@ namespace OurTunes.Service
 
     public class PlaylistSongServices
     {
+
         public bool PostSong(JointModel joint)
         {
             JointPlaylist addSong = new JointPlaylist();
@@ -224,9 +220,10 @@ namespace OurTunes.Service
                                 new JointSongList
                                 {
                                     SongName = e.Song.SongName,
-                                    SongLength = e.Song.SongLength,
+                                    SongLength = e.Song.SongLength.ToString(),
                                     AlbumName = e.Song.AlbumName,
                                     ArtistName = e.Song.ArtistName,
+                                    
                                 }
                         );
 

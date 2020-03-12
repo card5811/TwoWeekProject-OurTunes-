@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OurTunes.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace OurTunes.Model
 {
     public class PlaylistEdit
     {
+
         public int PlaylistId { get; set; }
 
         public int OwnerId { get; set; }
@@ -17,6 +19,7 @@ namespace OurTunes.Model
         [MaxLength(30, ErrorMessage = "Make it something shorter please.")]
         public string PlaylistName { get; set; }
 
-        public string TotalTimeOfPlaylist { get; set; }
+        public int TotalTime { get; set; }
+
     }
 }

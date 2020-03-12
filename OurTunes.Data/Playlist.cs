@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IdentityModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -16,11 +17,11 @@ namespace OurTunes.Data
         [Required]
         public string PlaylistName { get; set; }
 
-        public string TotalTimeOfPlaylist { get; set; }
-        [ForeignKey(nameof(Owner))]
-        public int OwnerId { get; set; }
 
-        public virtual Profile Owner { get; set; }
+       // [ForeignKey(nameof(User))]
+        public int OwnerId { get; set; }
+      //  public virtual Profile User { get; set; }
+        public int TotalTimeOfPlaylist { get; set; }
+        //come back and work with song length 
     }
 }
-

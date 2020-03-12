@@ -27,14 +27,11 @@ namespace BlueBadgeProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
             Song song = db.Songs.Find(id);
-
             if (song == null)
             {
                 return HttpNotFound();
             }
-
             return View(song);
         }
 
@@ -49,7 +46,7 @@ namespace BlueBadgeProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SongId,ArtistName,SongName,AlbumName,SongLength")] Song song)
+        public ActionResult Create([Bind(Include = "SongId,ArtistName,SongName,AlbumName,SongLength,SongGenre")] Song song)
         {
             if (ModelState.IsValid)
             {
@@ -68,14 +65,11 @@ namespace BlueBadgeProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
             Song song = db.Songs.Find(id);
-
             if (song == null)
             {
                 return HttpNotFound();
             }
-
             return View(song);
         }
 
@@ -84,7 +78,7 @@ namespace BlueBadgeProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SongId,ArtistName,SongName,AlbumName,SongLength")] Song song)
+        public ActionResult Edit([Bind(Include = "SongId,ArtistName,SongName,AlbumName,SongLength,SongGenre")] Song song)
         {
             if (ModelState.IsValid)
             {
@@ -92,7 +86,6 @@ namespace BlueBadgeProject.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(song);
         }
 
@@ -103,14 +96,11 @@ namespace BlueBadgeProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
             Song song = db.Songs.Find(id);
-
             if (song == null)
             {
                 return HttpNotFound();
             }
-
             return View(song);
         }
 
@@ -131,7 +121,6 @@ namespace BlueBadgeProject.Controllers
             {
                 db.Dispose();
             }
-
             base.Dispose(disposing);
         }
     }

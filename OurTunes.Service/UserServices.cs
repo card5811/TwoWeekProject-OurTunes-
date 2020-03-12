@@ -1,5 +1,7 @@
-﻿using OurTunes.Data;
+﻿using OurTunes;
+using OurTunes.Data;
 using OurTunes.Model;
+using OurTunes.Model.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +35,7 @@ namespace OurTunes.Service
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Profiles.Add(entity);
+
                 return ctx.SaveChanges() == 1;
             }
         }
@@ -129,5 +132,6 @@ namespace OurTunes.Service
                 return ctx.SaveChanges() == 1;
             }
         }
+
     }
 }
