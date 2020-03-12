@@ -38,6 +38,7 @@ namespace OurTunes.Data
         public DbSet<Song> Songs { get; set; }
         public DbSet<Playlist> Playlists { get; set; }
         public DbSet<JointPlaylist> JointPlaylists { get; set; }
+        public DbSet<SongRating>SongRatings { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -50,6 +51,7 @@ namespace OurTunes.Data
                 .Add(new IdentityUserLoginConfiguration())
                 .Add(new IdentityUserRoleConfiguration());
         }
+
     }
     public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>
     {

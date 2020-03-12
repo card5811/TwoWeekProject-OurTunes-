@@ -14,6 +14,5 @@ namespace OurTunes.Model
 
         public int UserId { get; set; }
 
-        public string TotalTimeOfPlaylist { get; }
     }
 }

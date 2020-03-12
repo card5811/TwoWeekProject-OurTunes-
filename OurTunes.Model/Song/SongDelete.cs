@@ -14,7 +14,7 @@ namespace OurTunes.Model
 
         public string AlbumName { get; set; }
 
-        public string SongLength { get; set; }
+        public int SongLength { get; set; }
 
         public string SongGenre { get; set; }
 
