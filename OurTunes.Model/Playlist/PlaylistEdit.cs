@@ -20,6 +20,5 @@ namespace OurTunes.Model
         public string PlaylistName { get; set; }
 
         public int TotalTime { get; set; }
-
     }
 }

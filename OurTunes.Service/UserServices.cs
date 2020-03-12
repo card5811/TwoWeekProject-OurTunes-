@@ -12,11 +12,11 @@ namespace OurTunes.Service
 {
     public class UserServices
     {
-        private readonly string _userId;
+        private readonly string _profileId;
 
-        public UserServices(string userId)
+        public UserServices(string profileId)
         {
-            _userId = userId;
+            _profileId = profileId;
         }
 
         public bool CreateUser(UserCreate model)
@@ -25,7 +25,7 @@ namespace OurTunes.Service
                 new Profile()
                 {
                     OwnerId = model.OwnerId,
-                    UserId = model.UserId,
+                    ProfileId = model.ProfileId,
                     FName = model.FName,
                     LName = model.LName,
                     UserName = model.UserName,
@@ -47,7 +47,7 @@ namespace OurTunes.Service
                 var query =
                     ctx
                     .Profiles
-                    .Where(e => e.UserId == _userId)
+                    .Where(e => e.ProfileId == _profileId)
                     .Select(
                         e =>
                         new UserList
@@ -56,6 +56,7 @@ namespace OurTunes.Service
                             UserName = e.UserName
                         }
                         );
+
                 return query.ToArray();
             }
         }
@@ -91,12 +92,10 @@ namespace OurTunes.Service
                 return
                     new UserCreate
                     {
-
                         UserName = entity.UserName,
                         Email = entity.Email,
                         FName = entity.FName,
                         LName = entity.LName
-
                     };
             }
         }
@@ -109,7 +108,6 @@ namespace OurTunes.Service
                     ctx
                     .Profiles
                     .Single(e => e.OwnerId == model.OwnerId);
-
 
                 entity.UserName = model.UserName;
                 entity.FName = model.FName;
@@ -134,8 +132,5 @@ namespace OurTunes.Service
                 return ctx.SaveChanges() == 1;
             }
         }
-
     }
 }
-
-
