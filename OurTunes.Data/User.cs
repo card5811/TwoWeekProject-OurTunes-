@@ -12,9 +12,10 @@ namespace OurTunes.Data
     public class Profile
     {
         [Key]
-        public int OwnerId { get; set; }
+        //guid
+        public string ProfileId { get; set; }
 
-        public string UserId { get; set; }
+        public int OwnerId { get; set; }
 
         [Required]
         public string UserName { get; set; }

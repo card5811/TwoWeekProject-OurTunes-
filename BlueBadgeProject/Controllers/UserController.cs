@@ -27,7 +27,7 @@ namespace BlueBadgeProject.Controllers
                 return BadRequest(ModelState);
 
             var service = CreateUserService();
-            user.UserId = User.Identity.GetUserId();
+            user.ProfileId = User.Identity.GetUserId();
             user.Email = User.Identity.GetUserName();
                         
             if (!service.CreateUser(user))

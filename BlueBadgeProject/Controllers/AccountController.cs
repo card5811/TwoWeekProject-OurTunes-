@@ -336,7 +336,7 @@ namespace BlueBadgeProject.Controllers
             Profile profile = new Profile();
             
 
-            profile.UserId = user.Id;
+            profile.ProfileId = user.Id;
             ctx.SaveChanges();
 
             if (!result.Succeeded)

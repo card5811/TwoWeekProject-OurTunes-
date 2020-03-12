@@ -11,7 +11,7 @@ namespace OurTunes.Model
     {
         public int OwnerId { get; set; }
 
-        public string UserId { get; set; }
+        public string ProfileId { get; set; }
         
         public string UserName { get; set; }
 
