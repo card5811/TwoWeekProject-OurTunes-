@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace OurTunes.Service
 {
+
+    
     public class SongServices
     {
         public bool CreateSong(SongCreate model)
@@ -21,7 +23,6 @@ namespace OurTunes.Service
                     SongLength = model.SongLength,
                     ArtistName = model.ArtistName
                 };
-
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Songs.Add(entity);

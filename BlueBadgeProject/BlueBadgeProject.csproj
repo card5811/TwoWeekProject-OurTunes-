@@ -215,6 +215,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlaylistController.cs" />
     <Compile Include="Controllers\SongController.cs" />
+    <Compile Include="Controllers\SongsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -385,6 +386,11 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Songs\Create.cshtml" />
+    <Content Include="Views\Songs\Delete.cshtml" />
+    <Content Include="Views\Songs\Details.cshtml" />
+    <Content Include="Views\Songs\Edit.cshtml" />
+    <Content Include="Views\Songs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

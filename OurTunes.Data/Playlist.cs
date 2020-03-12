@@ -21,6 +21,6 @@ namespace OurTunes.Data
         public virtual Profile User { get; set; }
 
         public string TotalTimeOfPlaylist { get; set; }
-        //come back and work with song length 
     }
 }
+

@@ -107,6 +107,7 @@ namespace OurTunes.Service
     {
         public bool PostSong(JointModel joint)
         {
+
             JointPlaylist addSong = new JointPlaylist();
             addSong.PlaylistId = joint.PlaylistId;
             addSong.SongId = joint.SongId;
@@ -114,8 +115,100 @@ namespace OurTunes.Service
             using (var context = new ApplicationDbContext())
             {
                 context.JointPlaylists.Add(addSong);
+                context.SaveChanges();
+                var id = context.Playlists.Single(e => e.PlaylistId == joint.PlaylistId);
+                id.TotalTimeOfPlaylist = GetPlaylistTime(GetPlaylistSongs(joint.PlaylistId));
                 return context.SaveChanges() == 1;
             };
+        }
+
+        public string GetPlaylistTime(IEnumerable<JointSongList> playlist)
+        {
+            List<int> hourArray = new List<int>();
+            List<int> minutesArray = new List<int>();
+            List<int> secondsArray = new List<int>();
+            double totalHours = 0;
+            double totalMinutes = 0;
+            double totalSeconds = 0;
+            double secondsToMinutes;
+            double minutesToHours;
+            double remainderSeconds;
+            double remainderMinutes;
+            string total = "";
+
+            foreach (var song in playlist)
+            {
+
+                string[] splitString = song.SongLength.Split(':');
+                var hours = Convert.ToInt32(splitString[0]);
+                var minutes = Convert.ToInt32(splitString[1]);
+                var seconds = Convert.ToInt32(splitString[2]);
+                secondsArray.Add(seconds);
+                hourArray.Add(hours);
+                minutesArray.Add(minutes);
+
+                if (totalHours > 60 || totalMinutes > 60 || totalSeconds > 60)
+                {
+                    totalSeconds = secondsArray.Sum();
+                    secondsToMinutes = Convert.ToInt32(Math.Floor(totalSeconds / 60));
+                    remainderSeconds = totalSeconds % 60;
+                    totalMinutes = minutesArray.Sum() + secondsToMinutes;
+                    minutesToHours = Convert.ToInt32(Math.Floor(totalMinutes / 60));
+                    remainderMinutes = totalMinutes % 60;
+                    totalHours = hourArray.Sum() + minutesToHours;
+                    total = $"{totalHours}:{remainderMinutes}:{remainderSeconds}";
+                }
+            }
+
+            totalHours = hourArray.Sum();
+            totalMinutes = minutesArray.Sum();
+            totalSeconds = secondsArray.Sum();
+
+            if (totalHours < 10 || totalMinutes < 10 || totalSeconds < 10)
+            {
+                //hours
+                if (totalHours < 10 && totalMinutes > 10 && totalSeconds > 10)
+                {
+                    total = $"0{totalHours}:{totalMinutes}:{totalSeconds}";
+                }
+
+                if (totalHours < 10 && totalMinutes < 10 && totalSeconds > 10)
+                {
+                    total = $"0{totalHours}:0{totalMinutes}:{totalSeconds}";
+                }
+
+                if (totalHours < 10 && totalMinutes > 10 && totalSeconds < 10)
+                {
+                    total = $"0{totalHours}:{totalMinutes}:0{totalSeconds}";
+                }
+
+                if (totalHours < 10 && totalMinutes < 10 && totalSeconds < 10)
+                {
+                    total = $"0{totalHours}:0{totalMinutes}:0{totalSeconds}";
+                }
+
+                //minutes
+                if (totalHours > 10 && totalMinutes < 10 && totalSeconds > 10)
+                {
+                    total = $"{totalHours}:0{totalMinutes}:{totalSeconds}";
+                }
+
+                if (totalHours > 10 && totalMinutes < 10 && totalSeconds < 10)
+                {
+                    total = $"{totalHours}:0{totalMinutes}:0{totalSeconds}";
+                }
+
+                //seconds
+                if (totalHours > 10 && totalMinutes > 10 && totalSeconds < 10)
+                {
+                    total = $"{totalHours}:{totalMinutes}:0{totalSeconds}";
+                }
+            }
+
+            else
+                total = $"{totalHours}:{totalMinutes}:{totalSeconds}";
+
+            return total;
         }
 
         public IEnumerable<JointSongList> GetPlaylistSongs(int id)
@@ -145,10 +238,12 @@ namespace OurTunes.Service
         {
             using (var context = new ApplicationDbContext())
             {
-                var deleteSong = context.JointPlaylists.Single(e => e.PlaylistId == playlistId && e.SongId == songId);
 
+                var deleteSong = context.JointPlaylists.First(e => e.PlaylistId == playlistId && e.SongId == songId);
                 context.JointPlaylists.Remove(deleteSong);
-
+                context.SaveChanges();
+                var time = context.Playlists.Single(e => e.PlaylistId == playlistId);
+                time.TotalTimeOfPlaylist = GetPlaylistTime(GetPlaylistSongs(playlistId));
                 return context.SaveChanges() == 1;
             }
         }
