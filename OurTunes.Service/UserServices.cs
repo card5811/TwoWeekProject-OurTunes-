@@ -53,6 +53,7 @@ namespace OurTunes.Service
                             UserName = e.UserName
                         }
                         );
+
                 return query.ToArray();
             }
         }

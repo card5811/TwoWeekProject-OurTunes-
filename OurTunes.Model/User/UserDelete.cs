@@ -9,6 +9,5 @@ namespace OurTunes.Model
     public class UserDelete
     {
         public int OwnerId { get; set; }
-
     }
 }

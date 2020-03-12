@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OurTunes.Model
 {
-   public class PlaylistCreate
+    public class PlaylistCreate
     {
         public int PlaylistId { get; set; }
 

@@ -27,11 +27,14 @@ namespace BlueBadgeProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Song song = db.Songs.Find(id);
+
             if (song == null)
             {
                 return HttpNotFound();
             }
+
             return View(song);
         }
 
@@ -65,11 +68,14 @@ namespace BlueBadgeProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Song song = db.Songs.Find(id);
+
             if (song == null)
             {
                 return HttpNotFound();
             }
+
             return View(song);
         }
 
@@ -86,6 +92,7 @@ namespace BlueBadgeProject.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             return View(song);
         }
 
@@ -96,11 +103,14 @@ namespace BlueBadgeProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Song song = db.Songs.Find(id);
+
             if (song == null)
             {
                 return HttpNotFound();
             }
+
             return View(song);
         }
 
@@ -121,6 +131,7 @@ namespace BlueBadgeProject.Controllers
             {
                 db.Dispose();
             }
+
             base.Dispose(disposing);
         }
     }

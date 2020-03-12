@@ -101,13 +101,13 @@ namespace OurTunes.Service
             }
         }
     }
+
     //-----------Get/Post/Delete Songs From a Playlist----------------//
 
     public class PlaylistSongServices
     {
         public bool PostSong(JointModel joint)
         {
-
             JointPlaylist addSong = new JointPlaylist();
             addSong.PlaylistId = joint.PlaylistId;
             addSong.SongId = joint.SongId;
@@ -249,4 +249,3 @@ namespace OurTunes.Service
         }
     }
 }
-
