@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class IniialMigration : DbMigration
+    public partial class InitialMigration : DbMigration
     {
         public override void Up()
         {
@@ -39,7 +39,7 @@
                 c => new
                     {
                         OwnerId = c.Int(nullable: false, identity: true),
-                        UserId = c.String(),
+                        ProfileId = c.String(),
                         UserName = c.String(nullable: false),
                         FName = c.String(nullable: false),
                         LName = c.String(nullable: false),

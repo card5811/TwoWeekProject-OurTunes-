@@ -16,9 +16,9 @@ namespace OurTunes.Data
         [Required]
         public string PlaylistName { get; set; }
 
-        [ForeignKey(nameof(User))]
+        [ForeignKey(nameof(Owner))]
         public int OwnerId { get; set; }
-        public virtual Profile User { get; set; }
+        public virtual Profile Owner { get; set; }
 
         public string TotalTimeOfPlaylist { get; set; }
     }
