@@ -113,7 +113,7 @@ namespace OurTunes.Service
                 context.JointPlaylists.Add(addSong);
                 context.SaveChanges();
                 var id = context.Playlists.Single(e => e.PlaylistId == joint.PlaylistId);
-                id.TotalTimeOfPlaylist = GetPlaylistTime(GetPlaylistSongs(joint.PlaylistId));
+                id.TotalTimeOfPlaylist = GetPlaylistTime(GetPlaylistSongs(joint.SongId));
                 return context.SaveChanges() == 1;
             };
         }
@@ -134,7 +134,6 @@ namespace OurTunes.Service
 
             foreach (var song in playlist)
             {
-
                 string[] splitString = song.SongLength.Split(':');
                 var hours = Convert.ToInt32(splitString[0]);
                 var minutes = Convert.ToInt32(splitString[1]);

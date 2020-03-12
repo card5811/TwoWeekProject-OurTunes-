@@ -12,7 +12,6 @@ namespace OurTunes.Service
     {
         public bool RateASong(RateCreate model)
         {
-
              SongRating addRate = new SongRating();
             addRate.SongId = model.SongId;
             addRate.SongRate = model.MyRating;
@@ -26,6 +25,5 @@ namespace OurTunes.Service
                 return context.SaveChanges() == 0;
             };
         }
-        
     }
 }

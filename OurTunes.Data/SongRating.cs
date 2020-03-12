@@ -18,6 +18,5 @@ namespace OurTunes.Data
         [ForeignKey(nameof(Song))]
         public int SongId { get; set; }
         public Song Song { get; set; }
-
     }
 }

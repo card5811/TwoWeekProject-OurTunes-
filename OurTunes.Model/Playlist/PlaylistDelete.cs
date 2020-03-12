@@ -13,6 +13,5 @@ namespace OurTunes.Model
         public string PlaylistName { get; set; }
 
         public int UserId { get; set; }
-
     }
 }

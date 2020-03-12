@@ -13,8 +13,5 @@ namespace OurTunes.Model
         public int SongId { get; set; }
 
         public int PlaylistId { get; set; }
-
-     //   [NotMapped]
-      //  public string PlaylistLength { get; set; }
     }
 }

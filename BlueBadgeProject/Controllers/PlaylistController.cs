@@ -15,7 +15,6 @@ namespace BlueBadgeProject.Controllers
     public class PlaylistController : ApiController
     {
 
-       // private readonly int _
         //GET ALL
         public IHttpActionResult Get()
         {
@@ -67,9 +66,12 @@ namespace BlueBadgeProject.Controllers
 
             if (!services.DeletePlaylist(id))
                 return InternalServerError();
+
             return Ok();
         }
+
         //------------------Post/Get/Delete Songs For Playlist --------------//
+
         private PlaylistSongServices SongPlaylistService()
         {
             var playlistServices = new PlaylistSongServices();

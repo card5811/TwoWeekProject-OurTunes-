@@ -17,12 +17,14 @@ namespace BlueBadgeProject.Controllers
             {
                 return BadRequest(ModelState);
             }
+
             RateServices service = new RateServices();
 
             if(!service.RateASong(songId))
             {
                 return InternalServerError();
             }
+
             return Ok();
         }
     }

@@ -207,6 +207,7 @@ namespace BlueBadgeProject.Controllers
             {
                 result = await UserManager.RemovePasswordAsync(User.Identity.GetUserId());
             }
+
             else
             {
                 result = await UserManager.RemoveLoginAsync(User.Identity.GetUserId(),
@@ -377,6 +378,7 @@ namespace BlueBadgeProject.Controllers
             {
                 return GetErrorResult(result); 
             }
+
             return Ok();
         }
 
