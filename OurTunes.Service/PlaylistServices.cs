@@ -234,7 +234,6 @@ namespace OurTunes.Service
         {
             using (var context = new ApplicationDbContext())
             {
-
                 var deleteSong = context.JointPlaylists.First(e => e.PlaylistId == playlistId && e.SongId == songId);
                 context.JointPlaylists.Remove(deleteSong);
                 context.SaveChanges();
