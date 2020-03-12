@@ -11,7 +11,7 @@ namespace BlueBadgeProject.Controllers
 {
     public class RateController : ApiController
     {
-        public IHttpActionResult PostRating(RateCreate songId)
+        public IHttpActionResult PostRating(SongRateCreate songId)
         {
             if(!ModelState.IsValid)
             {

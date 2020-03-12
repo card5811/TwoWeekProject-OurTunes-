@@ -20,5 +20,6 @@ namespace OurTunes.Data
         public int OwnerId { get; set; }
 
         public string TotalTimeOfPlaylist { get; set; }
+
     }
 }
