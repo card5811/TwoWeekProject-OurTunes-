@@ -118,11 +118,32 @@
     <Compile Include="Migrations\202003111333262_AddedGenre.designer.cs">
       <DependentUpon>202003111333262_AddedGenre.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003111810239_Front-End-Test.cs" />
+    <Compile Include="Migrations\202003111810239_Front-End-Test.designer.cs">
+      <DependentUpon>202003111810239_Front-End-Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003121541288_Made Rate a song.cs" />
+    <Compile Include="Migrations\202003121541288_Made Rate a song.designer.cs">
+      <DependentUpon>202003121541288_Made Rate a song.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003121608582_Added Rate to son methods.cs" />
+    <Compile Include="Migrations\202003121608582_Added Rate to son methods.designer.cs">
+      <DependentUpon>202003121608582_Added Rate to son methods.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003121615588_FixUserInfo.cs" />
+    <Compile Include="Migrations\202003121615588_FixUserInfo.designer.cs">
+      <DependentUpon>202003121615588_FixUserInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003121652053_FixRateProperties.cs" />
+    <Compile Include="Migrations\202003121652053_FixRateProperties.designer.cs">
+      <DependentUpon>202003121652053_FixRateProperties.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Playlist.cs" />
     <Compile Include="Song.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SongRating.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -135,6 +156,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003111333262_AddedGenre.resx">
       <DependentUpon>202003111333262_AddedGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003111810239_Front-End-Test.resx">
+      <DependentUpon>202003111810239_Front-End-Test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003121541288_Made Rate a song.resx">
+      <DependentUpon>202003121541288_Made Rate a song.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003121608582_Added Rate to son methods.resx">
+      <DependentUpon>202003121608582_Added Rate to son methods.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003121615588_FixUserInfo.resx">
+      <DependentUpon>202003121615588_FixUserInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003121652053_FixRateProperties.resx">
+      <DependentUpon>202003121652053_FixRateProperties.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

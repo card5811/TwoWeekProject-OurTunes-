@@ -92,5 +92,7 @@ namespace BlueBadgeProject.Controllers
 
             return Ok();
         }
+        //-------------Rating-------------//
+
     }
 }
