@@ -15,10 +15,8 @@ namespace OurTunes.Service
             var entity =
                 new Playlist()
                 {
-                    PlaylistId = model.PlaylistId,
                     PlaylistName = model.PlaylistName,
                     OwnerId = model.OwnerId,
-                    TotalTimeOfPlaylist = model.TotalTimeOfPlaylist
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -43,7 +41,6 @@ namespace OurTunes.Service
                                     PlaylistId = e.PlaylistId,
                                     OwnerId = e.OwnerId,
                                     PlaylistName = e.PlaylistName,
-                                    TotalTimeOfPlaylist = e.TotalTimeOfPlaylist
                                 }
                         );
 
@@ -65,7 +62,6 @@ namespace OurTunes.Service
                     new PlaylistEdit
                     {
                         PlaylistName = entity.PlaylistName,
-                        TotalTimeOfPlaylist = entity.TotalTimeOfPlaylist,
                     };
             }
         }
@@ -80,7 +76,6 @@ namespace OurTunes.Service
                     .Single(e => e.PlaylistId == model.PlaylistId);
 
                 entity.PlaylistName = model.PlaylistName;
-                entity.TotalTimeOfPlaylist = model.TotalTimeOfPlaylist;
 
                 return ctx.SaveChanges() == 1;
             }
