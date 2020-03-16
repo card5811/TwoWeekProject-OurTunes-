@@ -18,7 +18,6 @@ namespace BlueBadgeProject.Controllers
             SongServices songService = CreateSongService();
             var songs = songService.GetAllSongs();
             return Ok(songs);
-
         }
 
         public IHttpActionResult Post(SongCreate song)
@@ -92,5 +91,7 @@ namespace BlueBadgeProject.Controllers
 
             return Ok();
         }
+        //-------------Rating-------------//
+
     }
 }

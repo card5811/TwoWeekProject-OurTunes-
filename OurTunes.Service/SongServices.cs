@@ -1,5 +1,6 @@
 ﻿using OurTunes.Data;
 using OurTunes.Model;
+using OurTunes.Model.SongRate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,6 @@ namespace OurTunes.Service
                     ArtistName = model.ArtistName,
                     SongGenre = model.SongGenre
                 };
-
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Songs.Add(entity);
@@ -47,7 +47,8 @@ namespace OurTunes.Service
                                     AlbumName = e.AlbumName,
                                     SongLength = e.SongLength,
                                     SongName = e.SongName,
-                                    SongGenre = e.SongGenre
+                                    SongGenre = e.SongGenre,
+                                    AverageRate = e.RateAdverage
                                 }
                         );
 
@@ -71,7 +72,8 @@ namespace OurTunes.Service
                         AlbumName = entity.AlbumName,
                         ArtistName = entity.ArtistName,
                         SongLength = entity.SongLength,
-                        SongGenre = entity.SongGenre
+                        SongGenre = entity.SongGenre,
+                        AverageRate = entity.RateAdverage
                     };
             }
         }
@@ -92,7 +94,8 @@ namespace OurTunes.Service
                         AlbumName = entity.AlbumName,
                         ArtistName = entity.ArtistName,
                         SongLength = entity.SongLength,
-                        SongGenre = entity.SongGenre
+                        SongGenre = entity.SongGenre,
+                        AverageRate = entity.RateAdverage
                     };
             }
         }
@@ -113,7 +116,8 @@ namespace OurTunes.Service
                         AlbumName = entity.AlbumName,
                         ArtistName = entity.ArtistName,
                         SongLength = entity.SongLength,
-                        SongGenre = entity.SongGenre
+                        SongGenre = entity.SongGenre,
+                        AverageRate = entity.RateAdverage
                     };
             }
         }
@@ -134,11 +138,11 @@ namespace OurTunes.Service
                         AlbumName = entity.AlbumName,
                         ArtistName = entity.ArtistName,
                         SongLength = entity.SongLength,
-                        SongGenre = entity.SongGenre
+                        SongGenre = entity.SongGenre,
+                        AverageRate = entity.RateAdverage
                     };
             }
         }
-
 
         public bool UpdateSong(SongEdit model)
         {
@@ -171,6 +175,27 @@ namespace OurTunes.Service
                 ctx.Songs.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
+            }
+        }
+
+        //---------------Song Rating-------------//
+
+        public bool AverageRating(int songId)
+        {
+            double avgRate = 0;
+            using(var context = new ApplicationDbContext())
+            {
+                var songRateList = context.SongRatings.Where(j => j.SongId == songId).ToList();
+
+                foreach(SongRating rate in songRateList)
+                {
+                    avgRate += rate.SongRate;
+                }
+                avgRate = avgRate / songRateList.Count();
+
+                var theSong = context.Songs.Single(j => j.SongId == songId);
+                theSong.RateAverage = avgRate.ToString().Substring(0, 3)   ;
+                return context.SaveChanges() == 1;
             }
         }
     }

@@ -33,5 +33,7 @@ namespace OurTunes.Data
         [Required]
         [Display(Name = "Song Genre")]
         public string SongGenre { get; set; }
+
+        public string RateAdverage { get; set; }
     }
 }

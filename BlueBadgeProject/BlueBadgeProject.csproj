@@ -214,6 +214,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlaylistController.cs" />
+    <Compile Include="Controllers\RateController.cs" />
     <Compile Include="Controllers\SongController.cs" />
     <Compile Include="Controllers\SongsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -223,6 +224,8 @@
     </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\SongGet.cs" />
+    <Compile Include="Models\SongGetContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -403,6 +406,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Rate\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -419,7 +423,7 @@
       <Name>OurTunes.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\OurTunes.Service\OurTunes.Service.csproj">
-      <Project>{a762657d-33e4-42e0-bac2-89cf22560c15}</Project>
+      <Project>{A762657D-33E4-42E0-BAC2-89CF22560C15}</Project>
       <Name>OurTunes.Service</Name>
     </ProjectReference>
   </ItemGroup>

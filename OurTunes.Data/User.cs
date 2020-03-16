@@ -14,7 +14,8 @@ namespace OurTunes.Data
         [Key]
         public int OwnerId { get; set; }
 
-        public string UserId { get; set; }
+        //guid
+        public string ProfileId { get; set; }
 
         [Required]
         public string UserName { get; set; }

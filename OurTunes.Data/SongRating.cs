@@ -8,17 +8,15 @@ using System.Threading.Tasks;
 
 namespace OurTunes.Data
 {
-    public class JointPlaylist
+    public class SongRating
     {
         [Key]
-        public int JointId { get; set; }
+        public int RateId { get; set; }
+
+        public double SongRate { get; set; }
 
         [ForeignKey(nameof(Song))]
         public int SongId { get; set; }
-        public virtual Song Song { get; set; }
-
-        [ForeignKey(nameof(Playlist))]
-        public int PlaylistId { get; set; }
-        public virtual Playlist Playlist { get; set; }
+        public Song Song { get; set; }
     }
 }
