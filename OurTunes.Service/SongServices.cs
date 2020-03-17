@@ -23,7 +23,6 @@ namespace OurTunes.Service
                     ArtistName = model.ArtistName,
                     SongGenre = model.SongGenre
                 };
-
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Songs.Add(entity);
@@ -145,7 +144,6 @@ namespace OurTunes.Service
             }
         }
 
-
         public bool UpdateSong(SongEdit model)
         {
             using (var ctx = new ApplicationDbContext())
@@ -179,8 +177,8 @@ namespace OurTunes.Service
                 return ctx.SaveChanges() == 1;
             }
         }
-        //---------------Song Rating-------------//
 
+        //---------------Song Rating-------------//
 
         public bool AverageRating(int songId)
         {
@@ -196,7 +194,7 @@ namespace OurTunes.Service
                 avgRate = avgRate / songRateList.Count();
 
                 var theSong = context.Songs.Single(j => j.SongId == songId);
-                theSong.RateAdverage = avgRate.ToString().Substring(0, 3)   ;
+                theSong.RateAverage = avgRate.ToString().Substring(0, 3)   ;
                 return context.SaveChanges() == 1;
             }
         }

@@ -15,7 +15,6 @@ namespace BlueBadgeProject.Controllers
     public class PlaylistController : ApiController
     {
 
-       // private readonly int _
         //GET ALL
         public IHttpActionResult Get()
         {
@@ -36,7 +35,6 @@ namespace BlueBadgeProject.Controllers
                 return InternalServerError();
 
             return Ok();
-
         }
 
         private PlaylistServices CreatePlaylistService()
@@ -68,9 +66,12 @@ namespace BlueBadgeProject.Controllers
 
             if (!services.DeletePlaylist(id))
                 return InternalServerError();
+
             return Ok();
         }
+
         //------------------Post/Get/Delete Songs For Playlist --------------//
+
         private PlaylistSongServices SongPlaylistService()
         {
             var playlistServices = new PlaylistSongServices();
@@ -89,10 +90,9 @@ namespace BlueBadgeProject.Controllers
             if (!service.PostSong(playlist))
                 return InternalServerError();
 
-
             return Ok();
-
         }
+
         [HttpGet]
         [Route("GetPlaylistSongs")]
         public IHttpActionResult GetSongsInPlaylist(int id)
@@ -105,8 +105,8 @@ namespace BlueBadgeProject.Controllers
             var songList = service.GetPlaylistSongs(id);
 
             return Ok(songList);
-
         }
+
         [HttpDelete]
         [Route("DeleteSongFromPlaylist")]
         public IHttpActionResult DeleteSongFromPlaylist(int songId, int playlistId)
@@ -119,8 +119,6 @@ namespace BlueBadgeProject.Controllers
                 return InternalServerError();
 
             return Ok();
-
         }
-
     }
 }

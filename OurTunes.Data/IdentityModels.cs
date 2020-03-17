@@ -34,7 +34,6 @@ namespace OurTunes.Data
         }
 
         public DbSet<Profile> Profiles { get; set; }
-
         public DbSet<Song> Songs { get; set; }
         public DbSet<Playlist> Playlists { get; set; }
         public DbSet<JointPlaylist> JointPlaylists { get; set; }
@@ -51,8 +50,8 @@ namespace OurTunes.Data
                 .Add(new IdentityUserLoginConfiguration())
                 .Add(new IdentityUserRoleConfiguration());
         }
-
     }
+
     public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>
     {
         public IdentityUserLoginConfiguration()
@@ -60,6 +59,7 @@ namespace OurTunes.Data
             HasKey(iul => iul.UserId);
         }
     }
+
     public class IdentityUserRoleConfiguration : EntityTypeConfiguration<IdentityUserRole>
     {
         public IdentityUserRoleConfiguration()
