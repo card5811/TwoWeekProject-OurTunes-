@@ -25,5 +25,16 @@ namespace BlueBadgeProject.Controllers
             }
             return Ok();
         }
+
+        public IHttpActionResult GetOrderedRatingList()
+        {
+            RateServices service = new RateServices();
+
+            var rateList = service.GetHighToLowList();
+
+            return Ok(rateList);
+        }
+
+   
     }
 }
