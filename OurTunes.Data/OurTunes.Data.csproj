@@ -110,9 +110,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="JointPlaylist.cs" />
-    <Compile Include="Migrations\202003171356080_MergMigration.cs" />
-    <Compile Include="Migrations\202003171356080_MergMigration.designer.cs">
-      <DependentUpon>202003171356080_MergMigration.cs</DependentUpon>
+    <Compile Include="Migrations\202003181515478_bug fixes.cs" />
+    <Compile Include="Migrations\202003181515478_bug fixes.designer.cs">
+      <DependentUpon>202003181515478_bug fixes.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Playlist.cs" />
@@ -127,8 +127,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003171356080_MergMigration.resx">
-      <DependentUpon>202003171356080_MergMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003181515478_bug fixes.resx">
+      <DependentUpon>202003181515478_bug fixes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
