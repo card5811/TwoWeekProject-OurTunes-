@@ -35,5 +35,6 @@ namespace OurTunes.Data
         public string SongGenre { get; set; }
 
         public string RateAdverage { get; set; }
+        public string RateAverage { get; set; }
     }
 }
