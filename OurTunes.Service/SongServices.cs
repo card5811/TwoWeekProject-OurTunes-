@@ -194,7 +194,13 @@ namespace OurTunes.Service
                 avgRate = avgRate / songRateList.Count();
 
                 var theSong = context.Songs.Single(j => j.SongId == songId);
-                theSong.RateAverage = avgRate.ToString().Substring(0, 3)   ;
+                //For some reason the program may throw an error here. If it dose you can uncommet line 200, and 201 then commet out line 202. 
+                //If not commet out 200,201, and 202. Then uncomment line 203.
+
+                 // string rateString = avgRate.ToString();
+                 // theSong.RateAverage = rateString.Substring(0, 3);
+                theSong.RateAverage = avgRate.ToString().Substring(0, 3);
+                //theSong.RateAverage = avgRate.ToString()
                 return context.SaveChanges() == 1;
             }
         }
