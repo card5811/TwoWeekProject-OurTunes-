@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initial : DbMigration
+    public partial class MergMigration : DbMigration
     {
         public override void Up()
         {
@@ -27,25 +27,10 @@
                     {
                         PlaylistId = c.Int(nullable: false, identity: true),
                         PlaylistName = c.String(nullable: false),
-                        UserId = c.Int(nullable: false),
+                        OwnerId = c.Int(nullable: false),
                         TotalTimeOfPlaylist = c.String(),
                     })
-                .PrimaryKey(t => t.PlaylistId)
-                .ForeignKey("dbo.User", t => t.UserId, cascadeDelete: true)
-                .Index(t => t.UserId);
-            
-            CreateTable(
-                "dbo.User",
-                c => new
-                    {
-                        OwnerId = c.Int(nullable: false, identity: true),
-                        UserId = c.Guid(nullable: false),
-                        UserName = c.String(nullable: false),
-                        FName = c.String(nullable: false),
-                        LName = c.String(nullable: false),
-                        Email = c.String(),
-                    })
-                .PrimaryKey(t => t.OwnerId);
+                .PrimaryKey(t => t.PlaylistId);
             
             CreateTable(
                 "dbo.Song",
@@ -56,8 +41,23 @@
                         SongName = c.String(nullable: false),
                         AlbumName = c.String(nullable: false),
                         SongLength = c.String(nullable: false),
+                        SongGenre = c.String(nullable: false),
+                        RateAverage = c.String(),
                     })
                 .PrimaryKey(t => t.SongId);
+            
+            CreateTable(
+                "dbo.Profile",
+                c => new
+                    {
+                        OwnerId = c.Int(nullable: false, identity: true),
+                        ProfileId = c.String(),
+                        UserName = c.String(nullable: false),
+                        FName = c.String(nullable: false),
+                        LName = c.String(nullable: false),
+                        Email = c.String(),
+                    })
+                .PrimaryKey(t => t.OwnerId);
             
             CreateTable(
                 "dbo.IdentityRole",
@@ -82,6 +82,18 @@
                 .ForeignKey("dbo.ApplicationUser", t => t.ApplicationUser_Id)
                 .Index(t => t.IdentityRole_Id)
                 .Index(t => t.ApplicationUser_Id);
+            
+            CreateTable(
+                "dbo.SongRating",
+                c => new
+                    {
+                        RateId = c.Int(nullable: false, identity: true),
+                        SongRate = c.Double(nullable: false),
+                        SongId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.RateId)
+                .ForeignKey("dbo.Song", t => t.SongId, cascadeDelete: true)
+                .Index(t => t.SongId);
             
             CreateTable(
                 "dbo.ApplicationUser",
@@ -136,24 +148,25 @@
             DropForeignKey("dbo.IdentityUserRole", "ApplicationUser_Id", "dbo.ApplicationUser");
             DropForeignKey("dbo.IdentityUserLogin", "ApplicationUser_Id", "dbo.ApplicationUser");
             DropForeignKey("dbo.IdentityUserClaim", "ApplicationUser_Id", "dbo.ApplicationUser");
+            DropForeignKey("dbo.SongRating", "SongId", "dbo.Song");
             DropForeignKey("dbo.IdentityUserRole", "IdentityRole_Id", "dbo.IdentityRole");
             DropForeignKey("dbo.JointPlaylist", "SongId", "dbo.Song");
             DropForeignKey("dbo.JointPlaylist", "PlaylistId", "dbo.Playlist");
-            DropForeignKey("dbo.Playlist", "UserId", "dbo.User");
             DropIndex("dbo.IdentityUserLogin", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserClaim", new[] { "ApplicationUser_Id" });
+            DropIndex("dbo.SongRating", new[] { "SongId" });
             DropIndex("dbo.IdentityUserRole", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserRole", new[] { "IdentityRole_Id" });
-            DropIndex("dbo.Playlist", new[] { "UserId" });
             DropIndex("dbo.JointPlaylist", new[] { "PlaylistId" });
             DropIndex("dbo.JointPlaylist", new[] { "SongId" });
             DropTable("dbo.IdentityUserLogin");
             DropTable("dbo.IdentityUserClaim");
             DropTable("dbo.ApplicationUser");
+            DropTable("dbo.SongRating");
             DropTable("dbo.IdentityUserRole");
             DropTable("dbo.IdentityRole");
+            DropTable("dbo.Profile");
             DropTable("dbo.Song");
-            DropTable("dbo.User");
             DropTable("dbo.Playlist");
             DropTable("dbo.JointPlaylist");
         }

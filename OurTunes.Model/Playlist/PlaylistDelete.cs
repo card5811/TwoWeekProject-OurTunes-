@@ -9,11 +9,8 @@ namespace OurTunes.Model
     public class PlaylistDelete
     {
         public int PlaylistId { get; set; }
-
         public string PlaylistName { get; set; }
-
         public int UserId { get; set; }
-
-        public string TotalTimeOfPlaylist { get; }
+        public int OwnerId { get; set; }
     }
 }

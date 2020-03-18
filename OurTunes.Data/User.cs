@@ -1,16 +1,21 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace OurTunes.Data
 {
-    public class User
+    public class Profile
     {
         [Key]
-        public Guid UserId { get; set; }
+        public int OwnerId { get; set; }
+
+        //guid
+        public string ProfileId { get; set; }
 
         [Required]
         public string UserName { get; set; }
@@ -21,8 +26,6 @@ namespace OurTunes.Data
         [Required]
         public string LName { get; set; }
 
-        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-
     }
 }

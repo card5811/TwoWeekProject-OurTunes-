@@ -6,30 +6,282 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan+2&display=swap" rel="stylesheet">
 </head>
+<style>
+
+    body {
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+        background: #586868;
+        color: white;
+    }
+
+    nav {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100vw;
+        height: 8vh;
+    }
+
+    .table td, .table th {
+        color: white;
+        background: #353638;
+        padding: 1vw;
+        border-top: none;
+
+    }
+
+    #expandButton {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 10;
+        border: 0;
+        margin: 10px 10px 0 0;
+        background: #1DCDC0;
+        width: 3vw;
+        height: 3vw;
+        border-radius: 50%;
+        outline: none;
+    }
+
+    .expandButtonSmall {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 10;
+        border: 0;
+        margin: 10px 10px 0 0;
+        background: #1DCDC0;
+        width: 2vw;
+        height: 2vw;
+        border-radius: 50%;
+        outline: none;
+
+    }
+
+    .option1, .option2, .option3, .option4, .option5 {
+        background: rgba(0, 255, 237, .2);
+        position: fixed;
+        top: 0;
+        right: 0;
+        border-bottom-left-radius: 100%;
+    }
+
+        .option1 a, .option2 a, .option3 a, .option4 a, .option5 a {
+            all: unset;
+            position: relative;
+            cursor: pointer;
+        }
+
+    .option1Collapsed {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 0;
+        width: 0;
+        transition-duration: 300ms;
+    }
+
+    .option2Collapsed {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 0;
+        width: 0;
+        transition-duration: 300ms;
+    }
+
+    .option3Collapsed {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 0;
+        width: 0;
+        transition-duration: 300ms;
+    }
+
+    .option4Collapsed {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 0;
+        width: 0;
+        transition-duration: 300ms;
+    }
+
+    .option5Collapsed {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 0;
+        width: 0;
+        transition-duration: 300ms;
+    }
+
+    .option1 {
+        height: 10vw;
+        width: 10vw;
+        z-index: 5;
+        transition-duration: 300ms;
+    }
+
+        .option1 a {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            margin-left: 4vw;
+            margin-bottom: 4vw;
+        }
+
+    .option2 {
+        height: 15vw;
+        width: 15vw;
+        z-index: 4;
+        transition-duration: 400ms;
+    }
+
+        .option2 a {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            margin-left: 4.5vw;
+            margin-bottom: 4.5vw;
+        }
+
+    .option3 {
+        height: 20vw;
+        width: 20vw;
+        z-index: 3;
+        transition-duration: 500ms;
+    }
+
+        .option3 a {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            margin-left: 6vw;
+            margin-bottom: 6vw;
+        }
+
+    .option4 {
+        height: 25vw;
+        width: 25vw;
+        z-index: 2;
+        transition-duration: 600ms;
+    }
+
+        .option4 a {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            margin-left: 7.5vw;
+            margin-bottom: 7.5vw;
+        }
+
+    .option5 {
+        height: 30vw;
+        width: 30vw;
+        transition-duration: 700ms;
+    }
+
+        .option5 a {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            margin-left: 9vw;
+            margin-bottom: 9vw;
+        }
+
+    .iconAvailable {
+        height: 2.5vw;
+        width: 2.5vw;
+        position: relative;
+        z-index: 10;
+        transition: ease-in-out 200ms;
+    }
+
+    .iconUnavailable {
+        height: 0;
+        width: 0;
+        visibility: hidden;
+    }
+
+    .iconAvailable:hover {
+        height: 40px;
+        width: 40px;
+        transition: ease-in-out 200ms;
+    }
+
+    .OurTunesTitle {
+        margin: 10px 0 0 10px;
+        justify-content: center;
+        font-size: 2em;
+        font-family: 'Baloo Chettan 2', cursive;
+    }
+
+    .OurTunesTitle img {
+        height: 50px;
+        width: 50px;
+        border: 2px solid rgba(0, 255, 237, 1);
+        border-radius: 50%;
+        margin: 0 10px 0 10px;
+
+    }
+
+    h2 {
+       font-family: 'Baloo Chettan 2', cursive;
+    }
+    
+    a:link, a:visited{
+        color: #1DCDC0;
+    }
+    
+</style>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
-                </ul>
-            </div>
+    <nav>
+        <div class="expandButton">
+            <button id="expandButton"><img src="~/open-menu.svg" style="cursor: pointer
+"/></button>
         </div>
-    </div>
-    <div class="container body-content">
+        <div class="option1" id="menu1">
+            <a href='@Url.Action("Index", "Songs")'>
+                <img src='@Url.Content("./logout.svg")' class="iconAvailable" id="icon1" />
+            </a>
+        </div>
+
+        <div class="option2" id="menu2">
+            <a href='@Url.Action("Index", "Songs")'>
+                <img src='@Url.Content("./contact.svg")' class="iconAvailable" id="icon2" />
+            </a>
+        </div>
+
+        <div class="option3" id="menu3">
+            <a href='@Url.Action("Index", "Songs")'>
+                <img src='@Url.Content("./playlist.svg")' class="iconAvailable" id="icon3" />
+            </a>
+        </div>
+        <div class="option4" id="menu4">
+            <a href='@Url.Action("Index", "Songs")'>
+                <img src='@Url.Content("./music (1).svg")' class="iconAvailable" id="icon4" />
+            </a>
+        </div>
+
+        <div class="option5" id="menu5">
+            <a href='@Url.Action("Index", "Home")'>
+                <img src='@Url.Content("./empire-state-building.svg")' class="iconAvailable" id="icon5" />
+            </a>
+        </div>
+        <div class="OurTunesTitle">Our<img src="~/world.svg"/>Tunes</div>
+    </nav>
+
+    <div class="container body-content" style="margin-top: 30px">
         @RenderBody()
         <hr />
-        <footer>
+        <footer style="position: absolute; bottom: 0; right: 0; height: 20px">
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
@@ -38,4 +290,32 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
+<script>
+    var expand = document.querySelector('#expandButton');
+    expandButton.addEventListener('click', () => {
+        menu1.classList.toggle("option1Collapsed");
+        menu1.classList.toggle("option1");
+        menu2.classList.toggle("option2Collapsed");
+        menu2.classList.toggle("option2");
+        menu3.classList.toggle("option3Collapsed");
+        menu3.classList.toggle("option3");
+        menu4.classList.toggle("option4Collapsed");
+        menu4.classList.toggle("option4");
+        menu5.classList.toggle("option5Collapsed");
+        menu5.classList.toggle("option5");
+        icon1.classList.toggle("iconAvailable");
+        icon1.classList.toggle("iconUnvailable");
+        icon2.classList.toggle("iconUnavailable");
+        icon2.classList.toggle("iconUnavailable");
+        icon3.classList.toggle("iconAvailable");
+        icon3.classList.toggle("iconUnavailable");
+        icon4.classList.toggle("iconAvailable");
+        icon4.classList.toggle("iconUnavailable");
+        icon5.classList.toggle("iconAvailable");
+        icon5.classList.toggle("iconUnavailable");
+        expandButton.classList.toggle("expandButtonSmall");
+    })
+
+
+</script>
 </html>

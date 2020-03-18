@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using OurTunes.Model;
+using OurTunes.Model.User;
 using OurTunes.Service;
 using System;
 using System.Collections.Generic;
@@ -10,56 +11,71 @@ using System.Web.Http;
 
 namespace BlueBadgeProject.Controllers
 {
+    [Authorize]
     public class UserController : ApiController
     {
+
+        public IHttpActionResult Get()
+        {
+            UserServices userServices = CreateUserService();
+            var user = userServices.GetUsers();
+            return Ok(user);
+        }
+
         public IHttpActionResult Post(UserCreate user)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var service = CreateUserService();
+            user.ProfileId = User.Identity.GetUserId();
+            user.Email = User.Identity.GetUserName();
 
             if (!service.CreateUser(user))
                 return InternalServerError();
 
             return Ok();
         }
+
+        //post
         private UserServices CreateUserService()
         {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var userService = new UserServices(userId);
-            return userService;
+            var userId = User.Identity.GetUserId();
+            var userServices = new UserServices(userId);
+            return userServices;
         }
 
-      /*  public IHttpActionResult Get(Guid id)
+        //get
+        public IHttpActionResult Get(string userName)
         {
-            UserServices userService = CreateUserService();
-            var user = userService.GetUserById(id);
+            UserServices userServices = CreateUserService();
+            var user = userServices.GetUserByUserName(userName);
             return Ok(user);
-        } */
+        }
 
-      /*  public IHttpActionResult Put(NoteEdit note)
+        //put
+        public IHttpActionResult Put(UserEdit user)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var service = CreateNoteService();
+            var service = CreateUserService();
 
-            if (!service.UpdateNote(note))
+            if (!service.UpdateUser(user))
                 return InternalServerError();
 
             return Ok();
-        } */
+        }
 
-        public IHttpActionResult Delete(string userName)
+        [HttpDelete]
+        public IHttpActionResult Delete(UserDelete id)
         {
             var service = CreateUserService();
 
-            if (!service.UserDelete(userName))
+            if (!service.DeleteUser(id))
                 return InternalServerError();
 
             return Ok();
         }
     }
 }
-

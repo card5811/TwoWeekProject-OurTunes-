@@ -1,5 +1,7 @@
-﻿using OurTunes.Data;
+﻿using OurTunes;
+using OurTunes.Data;
 using OurTunes.Model;
+using OurTunes.Model.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,28 +12,52 @@ namespace OurTunes.Service
 {
     public class UserServices
     {
-        private readonly Guid _userId;
+        private readonly string _profileId;
 
-        public UserServices(Guid userId)
+        public UserServices(string profileId)
         {
-            _userId = userId;
+            _profileId = profileId;
         }
 
         public bool CreateUser(UserCreate model)
         {
             var entity =
-                new User()
+                new Profile()
                 {
-                    UserId = _userId,
+                    OwnerId = model.OwnerId,
+                    ProfileId = model.ProfileId,
                     FName = model.FName,
                     LName = model.LName,
-                    UserName = model.UserName
+                    UserName = model.UserName,
+                    Email = model.Email
                 };
 
             using (var ctx = new ApplicationDbContext())
             {
-                ctx.User.Add(entity);
+                ctx.Profiles.Add(entity);
+
                 return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public IEnumerable<UserList> GetUsers()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                    .Profiles
+                    .Where(e => e.ProfileId == _profileId)
+                    .Select(
+                        e =>
+                        new UserList
+                        {
+                            OwnerId = e.OwnerId,
+                            UserName = e.UserName
+                        }
+                        );
+
+                return query.ToArray();
             }
         }
 
@@ -41,57 +67,70 @@ namespace OurTunes.Service
             {
                 var entity =
                     ctx
-                        .User
-                        .Single(e => e.UserName == userName && e.UserId == _userId);
+                        .Profiles
+                        .Single(e => e.UserName == userName);
                 return
                     new UserCreate
                     {
-                        UserId = entity.UserId,
+                        OwnerId = entity.OwnerId,
                         UserName = entity.UserName,
                         Email = entity.Email,
                         FName = entity.FName,
                         LName = entity.LName
-
                     };
             }
         }
 
-        public bool UserDelete(string userName)
-        {
-            throw new NotImplementedException();
-        }
-
-        /*  public bool UpdateNote(NoteEdit model)
-          {
-              using (var ctx = new ApplicationDbContext())
-              {
-                  var entity =
-                      ctx
-                      .Notes
-                      .Single(e => e.NoteId == model.NoteId && e.OwnerId == _userId);
-
-                  entity.Title = model.Title;
-                  entity.Content = model.Content;
-                  entity.ModifiedUtc = DateTimeOffset.Now;
-
-                  return ctx.SaveChanges() == 1;
-              }
-          } */
-
-        public bool DeleteUser(string userName)
+        public UserCreate GetUserById(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
-                    .User
-                    .Single(e => e.UserName == userName && e.UserId == _userId);
+                        .Profiles
+                        .Single(e => e.OwnerId == id);
+                return
+                    new UserCreate
+                    {
+                        UserName = entity.UserName,
+                        Email = entity.Email,
+                        FName = entity.FName,
+                        LName = entity.LName
+                    };
+            }
+        }
 
-                ctx.User.Remove(entity);
+        public bool UpdateUser(UserEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Profiles
+                    .Single(e => e.OwnerId == model.OwnerId);
+
+                entity.UserName = model.UserName;
+                entity.FName = model.FName;
+                entity.LName = model.LName;
+                entity.Email = model.Email;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool DeleteUser(UserDelete user)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Profiles
+                    .Single(e => e.OwnerId == user.OwnerId);
+
+                ctx.Profiles.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
             }
         }
     }
 }
-

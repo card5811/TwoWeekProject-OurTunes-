@@ -5,16 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OurTunes.Model
+namespace OurTunes.Model.User
 {
-   public class UserCreate
+    public class UserCreate
     {
-        public Guid UserId { get; set; }
-        
+        public int OwnerId { get; set; }
+
+        public string ProfileId { get; set; }
+
         public string UserName { get; set; }
 
-        [MinLength(2, ErrorMessage ="Please enter at least two characters for this field.")]
-        [MaxLength(20, ErrorMessage ="There's no way your first name is that long dude.")]
+        [MinLength(2, ErrorMessage = "Please enter at least two characters for this field.")]
+        [MaxLength(20, ErrorMessage = "There's no way your first name is that long dude.")]
         public string FName { get; set; }
 
         [MinLength(2, ErrorMessage = "Please enter at least 2 characters.")]
@@ -22,10 +24,5 @@ namespace OurTunes.Model
         public string LName { get; set; }
 
         public string Email { get; set; }
-
-        public bool UserDelete(string userName)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

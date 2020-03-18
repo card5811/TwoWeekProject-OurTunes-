@@ -27,17 +27,17 @@ namespace OurTunes.Data
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-        
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
 
-        public DbSet<User> User { get; set; }
+        public DbSet<Profile> Profiles { get; set; }
         public DbSet<Song> Songs { get; set; }
         public DbSet<Playlist> Playlists { get; set; }
         public DbSet<JointPlaylist> JointPlaylists { get; set; }
-
+        public DbSet<SongRating>SongRatings { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -50,20 +50,21 @@ namespace OurTunes.Data
                 .Add(new IdentityUserLoginConfiguration())
                 .Add(new IdentityUserRoleConfiguration());
         }
-
     }
-        public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>
+
+    public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>
+    {
+        public IdentityUserLoginConfiguration()
         {
-            public IdentityUserLoginConfiguration()
-            {
-                HasKey(iul => iul.UserId);
-            }
+            HasKey(iul => iul.UserId);
         }
-        public class IdentityUserRoleConfiguration : EntityTypeConfiguration<IdentityUserRole>
+    }
+
+    public class IdentityUserRoleConfiguration : EntityTypeConfiguration<IdentityUserRole>
+    {
+        public IdentityUserRoleConfiguration()
         {
-            public IdentityUserRoleConfiguration()
-            {
-                HasKey(iur => iur.UserId);
-            }
+            HasKey(iur => iur.UserId);
         }
+    }
 }
