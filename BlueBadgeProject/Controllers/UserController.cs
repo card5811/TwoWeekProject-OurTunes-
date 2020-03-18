@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using OurTunes.Model;
+using OurTunes.Model.User;
 using OurTunes.Service;
 using System;
 using System.Collections.Generic;
@@ -27,9 +28,9 @@ namespace BlueBadgeProject.Controllers
                 return BadRequest(ModelState);
 
             var service = CreateUserService();
-            user.UserId = User.Identity.GetUserId();
+            user.ProfileId = User.Identity.GetUserId();
             user.Email = User.Identity.GetUserName();
-                        
+
             if (!service.CreateUser(user))
                 return InternalServerError();
 
@@ -37,16 +38,15 @@ namespace BlueBadgeProject.Controllers
         }
 
         //post
-         private UserServices CreateUserService()
-         {
-           var userId = User.Identity.GetUserId();
-             var userServices = new UserServices(userId);
-                 return userServices;
-         } 
+        private UserServices CreateUserService()
+        {
+            var userId = User.Identity.GetUserId();
+            var userServices = new UserServices(userId);
+            return userServices;
+        }
 
-
-            //get
-            public IHttpActionResult Get(string userName)
+        //get
+        public IHttpActionResult Get(string userName)
         {
             UserServices userServices = CreateUserService();
             var user = userServices.GetUserByUserName(userName);
@@ -79,4 +79,3 @@ namespace BlueBadgeProject.Controllers
         }
     }
 }
-

@@ -6,10 +6,16 @@ using System.Threading.Tasks;
 
 namespace OurTunes.Model
 {
-   public class UserList
+    public class UserEdit
     {
-        public Guid UserId { get; set; }
         public int OwnerId { get; set; }
+
         public string UserName { get; set; }
+
+        public string FName { get; set; }
+
+        public string LName { get; set; }
+
+        public string Email { get; set; }
     }
 }

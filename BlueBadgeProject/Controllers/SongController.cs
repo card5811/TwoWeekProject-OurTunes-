@@ -18,7 +18,6 @@ namespace BlueBadgeProject.Controllers
             SongServices songService = CreateSongService();
             var songs = songService.GetAllSongs();
             return Ok(songs);
-
         }
 
         public IHttpActionResult Post(SongCreate song)
@@ -62,6 +61,14 @@ namespace BlueBadgeProject.Controllers
             return Ok(song);
         }
 
+        public IHttpActionResult GetByGenre(string SongGenre)
+        {
+            SongServices songServices = new SongServices();
+            var song = songServices.GetSongByGenre(SongGenre);
+            return Ok(song);
+        }
+
+
         public IHttpActionResult Put(SongEdit song)
         {
             if (!ModelState.IsValid)
@@ -79,10 +86,12 @@ namespace BlueBadgeProject.Controllers
         {
             var service = CreateSongService();
 
-            if (!service.DeleteNote(id))
+            if (!service.DeleteSong(id))
                 return InternalServerError();
 
             return Ok();
         }
+        //-------------Rating-------------//
+
     }
 }
