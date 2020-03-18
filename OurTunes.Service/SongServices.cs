@@ -48,7 +48,7 @@ namespace OurTunes.Service
                                     SongLength = e.SongLength,
                                     SongName = e.SongName,
                                     SongGenre = e.SongGenre,
-                                    AverageRate = e.RateAdverage
+                                    AverageRate = e.RateAverage
                                 }
                         );
 
@@ -73,7 +73,7 @@ namespace OurTunes.Service
                         ArtistName = entity.ArtistName,
                         SongLength = entity.SongLength,
                         SongGenre = entity.SongGenre,
-                        AverageRate = entity.RateAdverage
+                        AverageRate = entity.RateAverage
                     };
             }
         }
@@ -95,7 +95,7 @@ namespace OurTunes.Service
                         ArtistName = entity.ArtistName,
                         SongLength = entity.SongLength,
                         SongGenre = entity.SongGenre,
-                        AverageRate = entity.RateAdverage
+                        AverageRate = entity.RateAverage
                     };
             }
         }
@@ -117,7 +117,7 @@ namespace OurTunes.Service
                         ArtistName = entity.ArtistName,
                         SongLength = entity.SongLength,
                         SongGenre = entity.SongGenre,
-                        AverageRate = entity.RateAdverage
+                        AverageRate = entity.RateAverage
                     };
             }
         }
@@ -139,7 +139,7 @@ namespace OurTunes.Service
                         ArtistName = entity.ArtistName,
                         SongLength = entity.SongLength,
                         SongGenre = entity.SongGenre,
-                        AverageRate = entity.RateAdverage
+                        AverageRate = entity.RateAverage
                     };
             }
         }

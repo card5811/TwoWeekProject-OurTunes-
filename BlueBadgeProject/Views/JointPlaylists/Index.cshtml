@@ -1,0 +1,39 @@
+﻿@model IEnumerable<OurTunes.Data.JointPlaylist>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Playlist.PlaylistName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Song.ArtistName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Playlist.PlaylistName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Song.ArtistName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.JointId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.JointId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.JointId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -31,7 +31,7 @@ namespace OurTunes.Service
         {
             using(var context = new ApplicationDbContext())
             {
-               var rateList = context.Songs.Where(j => j.SongId == j.SongId).ToList().OrderByDescending(rate => rate.RateAdverage);
+               var rateList = context.Songs.Where(j => j.SongId == j.SongId).ToList().OrderByDescending(rate => rate.RateAverage);
                 return rateList;
             }
         }
